@@ -16,7 +16,7 @@ User.destroy_all
   user = User.create!(
     email: Faker::Internet.email,
     password: "password",
-    encrypted_password: "password",
+    # encrypted_password: '#$taawktljasktlw4aaglj',
     user_name: Faker::Internet.username,
     description: Faker::Lorem.paragraph,
     address: Faker::Address.city,

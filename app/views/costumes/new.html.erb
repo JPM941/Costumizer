@@ -1,0 +1,11 @@
+Bienvenue sur la page de création d'un costume
+
+<%= simple_form_for (@costume), html: { multipart: true } do |f| %>
+  <%= f.input :name %>
+  <%= f.input :price %>
+  <%= f.input :description %>
+  <%= f.input :image_url %>
+  <%= f.submit "Nouveau costume", class: "btn btn-danger" %>
+<% end %>
+
+<%= link_to "retour à la liste", user_costumes_path %>
