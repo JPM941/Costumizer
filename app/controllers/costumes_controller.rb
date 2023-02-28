@@ -22,6 +22,7 @@ class CostumesController < ApplicationController
     authorize @costume
     # attacher une image ? se fait dans les params
     if @costume.save
+
       redirect_to costumes_path
     else
       render :new, status: :unprocessable_entity
