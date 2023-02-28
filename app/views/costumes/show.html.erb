@@ -1,9 +1,10 @@
 <h1>page de costume_path</h1>
 
 <div class="card-trip">
-  <img src="#" />
+  <%= cl_image_tag @costume.image.key, height: 300, width: 400, crop: :fill %>
   <div class="card-trip-infos">
     <div>
+
       <h2><%= "#{@costume.name}" %></h2>
       <p><%= "#{@costume.description}" %></p>
     </div>

@@ -21,7 +21,9 @@ class CostumesController < ApplicationController
     @costume.user = current_user
     authorize @costume
     # attacher une image ?
+
     if @costume.save
+
       redirect_to costumes_path
     else
       render :new, status: :unprocessable_entity
