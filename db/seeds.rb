@@ -56,7 +56,7 @@ file = URI.open("https://m.media-amazon.com/images/I/616MS6r1lsL._AC_UX522_.jpg"
 veste = Costume.new(name: "Veste gothique", description: "keland Veste gothique à épaulettes et gilet plumes naturelles pour homme, fête d'Halloween", price: 100, user: dulcie)
 veste.image.attach(io: file, filename: "3dbleu.jpg", content_type: "image/png")
 veste.save!
-
+veste.image.key
 puts "seeding bookings"
 
 Booking.create!(
