@@ -7,10 +7,12 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 require 'faker'
+require 'open-uri'
+
 I18n.reload!
 
-Costume.destroy_all
 User.destroy_all
+Costume.destroy_all
 
 
   user = User.create!(
@@ -19,18 +21,8 @@ User.destroy_all
     # encrypted_password: '#$taawktljasktlw4aaglj',
     user_name: "Julien",
     description: "Le grand patron",
-    address: Faker::Address.city,
+    address: Faker::Address.city
   )
-  (0..5).to_a.sample.times do
-    costume = Costume.create!(
-      name: Faker::Commerce.product_name,
-      price: (10..500).to_a.sample,
-      description: Faker::Lorem.paragraph,
-      costume_rating: (0..5).to_a.sample,
-      user_id: user[:id]
-    )
-  p costume
-  end
 
   user = User.create!(
     email: "Dulcie@lewagon.fr",
@@ -38,18 +30,8 @@ User.destroy_all
     # encrypted_password: '#$taawktljasktlw4aaglj',
     user_name: "Dulcie",
     description: "Le front c'est trop bien !",
-    address: Faker::Address.city,
+    address: Faker::Address.city
   )
-  (0..5).to_a.sample.times do
-    costume = Costume.create!(
-      name: Faker::Commerce.product_name,
-      price: (10..500).to_a.sample,
-      description: Faker::Lorem.paragraph,
-      costume_rating: (0..5).to_a.sample,
-      user_id: user[:id]
-    )
-  p costume
-  end
 
   user = User.create!(
     email: "Mathieu@lewagon.fr",
@@ -57,34 +39,22 @@ User.destroy_all
     # encrypted_password: '#$taawktljasktlw4aaglj',
     user_name: "Mathieu",
     description: "Le back c'est trop bien !",
-    address: Faker::Address.city,
+    address: Faker::Address.city
   )
-  (0..5).to_a.sample.times do
-    costume = Costume.create!(
-      name: Faker::Commerce.product_name,
-      price: (10..500).to_a.sample,
-      description: Faker::Lorem.paragraph,
-      costume_rating: (0..5).to_a.sample,
-      user_id: user[:id]
-    )
-  p costume
-  end
+
+file = URI.open("https://litb-cgis.rightinthebox.com/images/640x853/202109/bps/product/inc/laknyd1630989468948.jpg")
+costume = Costume.new(name: "Sweet Poissons", description: "Homme Sweat à capuche Vert Bleu Marron Noir Capuche Graphic Poissons Imprimer Casual du quotidien 3D effet Vêtement de rue Casual Printemps & Automne Vêtement Tenue Pulls Capuche Pulls molletonnés", price: 50, user_id: 1)
+costume.image.attach(io: file, filename: "poissons.jpg", content_type: "image/png")
+costume.save!
+
+file = URI.open("https://litb-cgis.rightinthebox.com/images/640x640/202101/bps/product/inc/jprvpc1610949407078.jpg")
+costume = Costume.new(name: "Sweet 3D bleu", description: "Sweat à capuche Garçon Enfants manche longue 3D effet Graphic Bleu Enfants Hauts Automne Printemps Frais du quotidien 3-12 ans", price: 20, user_id: 2)
+costume.image.attach(io: file, filename: "3dbleu.jpg", content_type: "image/png")
+costume.save!
+
+file = URI.open("https://m.media-amazon.com/images/I/616MS6r1lsL._AC_UX522_.jpg")
+costume = Costume.new(name: "Veste gothique", description: "keland Veste gothique à épaulettes et gilet plumes naturelles pour homme, fête d'Halloween", price: 100, user_id: 3)
+costume.image.attach(io: file, filename: "3dbleu.jpg", content_type: "image/png")
+costume.save!
+
 p "seed done"
-
-
-require "open-uri"
-require "nokogiri"
-require "json"
-
-@n ||= 0
-
-url = "https://www.google.com/search?q=vetements+bizarres"
-
-html_file = URI.open(url)
-html_doc = Nokogiri::HTML.parse(html_file)
-puts "                                            search                                            "
-html_doc.search("vplap#{@n}").each do |element|
-  puts @n
-  puts element[0]
-  @n += 1
-end
