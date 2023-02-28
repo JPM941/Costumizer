@@ -1,6 +1,6 @@
 class CostumesController < ApplicationController
-  before_action :set_costume, only: %i[show]
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  before_action :set_costume, only: %i[show destroy edit update]
+  skip_before_action :authenticate_user!, only: %i[index show]
   def index
     @costumes = policy_scope(Costume)
     authorize @costumes
@@ -20,7 +20,7 @@ class CostumesController < ApplicationController
     @costume = Costume.new(costume_params)
     @costume.user = current_user
     authorize @costume
-    # attacher une image ?
+    # attacher une image ? se fait dans les params
     if @costume.save
       redirect_to costumes_path
     else
@@ -29,18 +29,16 @@ class CostumesController < ApplicationController
   end
 
   def destroy
-    @costume = set_costume
     authorize @costume
     @costume.destroy
-    redirect_to costumes_url, notice: "custume was successfully destroyed."
+    redirect_to costumes_url, notice: "costume was successfully destroyed."
   end
 
   def edit
-    @costume = set_costume
+    authorize @costume
   end
 
   def update
-    @costume = set_costume
     authorize @costume
     if @costume.update(costume_params)
       redirect_to @costume, notice: "costume was successfully updated."
