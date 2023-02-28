@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_many :costumes
   has_many :bookings
 
-  validates :user_name, presence: true, uniqueness: true
+  validates :user_name, presence: true, uniqueness: true, length: { minimum: 2 }
   validates :description, length: { minimum: 6 }
   validates :address, presence: true
 
