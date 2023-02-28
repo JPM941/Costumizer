@@ -24,6 +24,11 @@ class CostumesController < ApplicationController
     end
   end
 
+  def destroy
+    @costume.destroy
+  end
+
+
   private
 
   def set_costume
