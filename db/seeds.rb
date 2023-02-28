@@ -69,12 +69,6 @@ User.destroy_all
     )
   p costume
   end
-
-
-
-
-
-
 p "seed done"
 
 
@@ -84,7 +78,7 @@ require "json"
 
 @n ||= 0
 
-url = "https://www.google.com/search?q=vetements+bizarres&source=lnms&tbm=isch&sa=X&ved=2ahUKEwilk5KMzbb9AhWeTKQEHeVhDPUQ_AUoAXoECAEQAw"
+url = "https://www.google.com/search?q=vetements+bizarres"
 
 html_file = URI.open(url)
 html_doc = Nokogiri::HTML.parse(html_file)
