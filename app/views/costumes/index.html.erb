@@ -26,6 +26,6 @@
 </div>
 
 <%# si le user veut mettre un costume en location %>
-<%  if policy(Costume).new? %>
+<%  if current_user %>
 <%= link_to "mettre un costume en location",new_costume_path %>
 <% end %>

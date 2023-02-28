@@ -1,6 +1,6 @@
 class CostumesController < ApplicationController
   before_action :set_costume, only: %i[show]
-
+  skip_before_action :authenticate_user!, only: [:index, :show]
   def index
     @costumes = policy_scope(Costume)
     authorize @costumes
@@ -30,6 +30,7 @@ class CostumesController < ApplicationController
 
   def destroy
     @costume = set_costume
+    authorize @costume
     @costume.destroy
     redirect_to costumes_url, notice: "custume was successfully destroyed."
   end
@@ -40,6 +41,7 @@ class CostumesController < ApplicationController
 
   def update
     @costume = set_costume
+    authorize @costume
     if @costume.update(costume_params)
       redirect_to @costume, notice: "costume was successfully updated."
     else
