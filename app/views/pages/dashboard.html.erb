@@ -2,10 +2,12 @@
 <%= @mycostumes %>
 
 <h2> My client's pending bookings</h2>
-<%= @pending_requests %>
+<%= @pending_requests.each do |request| %>
+<%= end %>
 
 <h2> My client's confirmed bookings</h2>
-<%= @confirmed_requests %>
+<%= @confirmed_requests.each do |request| %>
+<%= end %>
 
 <h1> My bookings </h1>
 <%= @mybookings %>
