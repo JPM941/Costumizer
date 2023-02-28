@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "costumes#index"
   get "dashboard", to: "pages#dashboard"
-
+  post "booking/:id", to: "bookings#booking_status", as: :accept
   get "profile", to: "pages#profile"
 
   resources :costumes do
