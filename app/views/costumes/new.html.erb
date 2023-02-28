@@ -1,10 +1,6 @@
-Bienvenue sur la page de création d'un costume
+<h1>Welcome on costume creation page</h1>
 
-<%= simple_form_for (@costume), html: { multipart: true } do |f| %>
-  <%= f.input :name %>
-  <%= f.input :price %>
-  <%= f.input :description %>
-  <%= f.submit "Nouveau costume", class: "btn btn-danger" %>
-<% end %>
+# Now works when called from new.html.erb with either:
+<%= render 'costumes/form' %>
+<%= link_to "Back to dashboard", dashboard_path %>
 
-<%= link_to "retour à la liste", costumes_path %>
