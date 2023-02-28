@@ -43,13 +43,22 @@ class BookingsController < ApplicationController
     redirect_to user_bookings_path
   end
 
+  def booking_status
+    set_booking
+    @booking.status = "confirmed"
+    @booking.save
+    redirect_to dashboard_path
+  end
+
   private
 
   def set_booking
-    @booking = booking.find(params[:id])
+    @booking = Booking.find(params[:id])
   end
 
   def booking_params
     params.require(:booking).permit(:start_date, :end_date, :user_id, :costume_id, :client_review, :client_rating, :costume_review, :client_rating, :status)
   end
+
+
 end

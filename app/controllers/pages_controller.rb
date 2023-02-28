@@ -24,10 +24,19 @@ class PagesController < ApplicationController
         end
       end
     end
+    # en une seule ligne (à confirmer) : @pending_requests_bis = Booking.joins(:costumes).where({costumes: {user: current_user}}, status:"pending")
+
 
     # mes demandes de reservation auprès d'autres loueurs
-    @mybookings = Booking.where(user: current_user)
-    # @bookingrequests
+    # @mybookings = Booking.where(user: current_user, status: "pending")
+
+    # mes demandes de reza en attente auprès d'autres loueurs
+    @pending_bookings = Booking.where(user: current_user, status: "pending")
+    # mes demandes de reza confirmée auprès d'autres loueurs
+    @confirmed_bookings = Booking.where(user: current_user, status: "confirmed")
   end
 
+  def mycostumes
+    @mycostumes = Costume.where(user: current_user)
+  end
 end
