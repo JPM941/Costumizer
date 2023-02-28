@@ -15,7 +15,6 @@ Booking.destroy_all
 Costume.destroy_all
 User.destroy_all
 
-
   julien = User.create!(
     email: "Julien@lewagon.fr",
     password: "password",
