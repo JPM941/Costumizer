@@ -1,0 +1,24 @@
+Bienvenue sur la page index des costumes
+
+
+<div class="container">
+  <div class="row d-flex justify-content-between">
+    <% @costumes.each do |costume| %>
+       <%# if costume.available? %>
+        <%= link_to costume_path(costume), class:"text-decoration-none" do%>
+          <div class="card-trip col-4 p-1">
+            <%# image à mettre %>
+            <div class="card-trip-infos">
+              <div>
+                <h2> <%= "#{costume.name} #{costume.price}€" %></h2>
+                <h2> <%= costume.description %> </h2>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+  </div>
+</div>
+
+<%# si le user veut mettre un costume en location %>
+<%= link_to "ajouter un costume (si le user veut mettre un costume en location)",costumes_path %>
