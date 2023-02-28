@@ -4,27 +4,29 @@ class PagesController < ApplicationController
 
   def dashboard
     # mes demandes de reservation auprès d'autres loueurs
-    @mybookings = Booking.where(user_id: current_user)
+    @mybookings = Booking.where(user: current_user)
     # ma liste de costume dont je suis proprio
-    @mycostumes = Costume.where(user_id: current_user)
+    @mycostumes = Costume.where(user: current_user)
 
 
-    #@bookingrequests
+    # @bookingrequests
+
+    # créer une nouvelle variable @pending_bookings et @confirmed_bookings
+    @pending_bookings = []
+    @confirmed_bookings = []
 
     # itérer sur mes costumes
-    # @mycostumes.each do |mycostume|
-
-    # # vérifier les bookings de chaque costume
-    #   @booked_costume = mycostume.booking_id == true
-
-    #   # vérifier le statut de ces bookings
-    #   # créer une nouvelle variable @pending_bookings et @confirmed_bookings
-    #   if booked_costume.status == "pending"
-    #     @pending_bookings <
-    #   elsif booked_costume.status == "confirmed"
-    #     @confirmed_bookings <
-    #   end
-    # end
-    # pusher les bookings correspondants dans ces variables
+    @mycostumes.each do |mycostume|
+    # vérifier les bookings de chaque costume
+      mycostume.bookings.each do |booking|
+        # vérifier le statut de ces bookings
+        if booking.status == "pending"
+          # pusher les bookings correspondants dans ces variables
+          @pending_bookings << booking
+        elsif booking.status == "confirmed"
+          @confirmed_bookings << booking
+        end
+      end
+    end
   end
 end

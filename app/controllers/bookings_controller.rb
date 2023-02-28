@@ -34,7 +34,7 @@ class BookingsController < ApplicationController
   def update
     set_booking
     @booking.update(booking_params)
-    redirect_to  user_booking_path(@booking)
+    redirect_to user_booking_path(@booking)
   end
 
   def destroy
@@ -50,6 +50,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :user_id, :costume_id, :client_review, :client_rating, :costume_review, :client_rating)
+    params.require(:booking).permit(:start_date, :end_date, :user_id, :costume_id, :client_review, :client_rating, :costume_review, :client_rating, :status)
   end
 end
