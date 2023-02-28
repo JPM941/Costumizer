@@ -13,9 +13,10 @@ I18n.reload!
 
 User.destroy_all
 Costume.destroy_all
+Booking.destroy_all
 
 
-  user = User.create!(
+  julien = User.create!(
     email: "Julien@lewagon.fr",
     password: "password",
     # encrypted_password: '#$taawktljasktlw4aaglj',
@@ -24,7 +25,7 @@ Costume.destroy_all
     address: Faker::Address.city
   )
 
-  user = User.create!(
+  dulcie = User.create!(
     email: "Dulcie@lewagon.fr",
     password: "password",
     # encrypted_password: '#$taawktljasktlw4aaglj',
@@ -33,7 +34,7 @@ Costume.destroy_all
     address: Faker::Address.city
   )
 
-  user = User.create!(
+  mathieu = User.create!(
     email: "Mathieu@lewagon.fr",
     password: "password",
     # encrypted_password: '#$taawktljasktlw4aaglj',
@@ -43,18 +44,60 @@ Costume.destroy_all
   )
 
 file = URI.open("https://litb-cgis.rightinthebox.com/images/640x853/202109/bps/product/inc/laknyd1630989468948.jpg")
-costume = Costume.new(name: "Sweet Poissons", description: "Homme Sweat à capuche Vert Bleu Marron Noir Capuche Graphic Poissons Imprimer Casual du quotidien 3D effet Vêtement de rue Casual Printemps & Automne Vêtement Tenue Pulls Capuche Pulls molletonnés", price: 50, user_id: 1)
-costume.image.attach(io: file, filename: "poissons.jpg", content_type: "image/png")
-costume.save!
+poisson = Costume.new(name: "Sweet Poissons", description: "Homme Sweat à capuche Vert Bleu Marron Noir Capuche Graphic Poissons Imprimer Casual du quotidien 3D effet Vêtement de rue Casual Printemps & Automne Vêtement Tenue Pulls Capuche Pulls molletonnés", price: 50, user: mathieu)
+poisson.image.attach(io: file, filename: "poissons.jpg", content_type: "image/png")
+poisson.save!
 
 file = URI.open("https://litb-cgis.rightinthebox.com/images/640x640/202101/bps/product/inc/jprvpc1610949407078.jpg")
-costume = Costume.new(name: "Sweet 3D bleu", description: "Sweat à capuche Garçon Enfants manche longue 3D effet Graphic Bleu Enfants Hauts Automne Printemps Frais du quotidien 3-12 ans", price: 20, user_id: 2)
-costume.image.attach(io: file, filename: "3dbleu.jpg", content_type: "image/png")
-costume.save!
+sweet = Costume.new(name: "Sweet 3D bleu", description: "Sweat à capuche Garçon Enfants manche longue 3D effet Graphic Bleu Enfants Hauts Automne Printemps Frais du quotidien 3-12 ans", price: 20, user: julien)
+sweet.image.attach(io: file, filename: "3dbleu.jpg", content_type: "image/png")
+sweet.save!
 
 file = URI.open("https://m.media-amazon.com/images/I/616MS6r1lsL._AC_UX522_.jpg")
-costume = Costume.new(name: "Veste gothique", description: "keland Veste gothique à épaulettes et gilet plumes naturelles pour homme, fête d'Halloween", price: 100, user_id: 3)
-costume.image.attach(io: file, filename: "3dbleu.jpg", content_type: "image/png")
-costume.save!
+veste = Costume.new(name: "Veste gothique", description: "keland Veste gothique à épaulettes et gilet plumes naturelles pour homme, fête d'Halloween", price: 100, user: dulcie)
+veste.image.attach(io: file, filename: "3dbleu.jpg", content_type: "image/png")
+veste.save!
 
-p "seed done"
+puts "seeding bookings"
+
+Booking.create!(
+  user: dulcie,
+  costume: poisson,
+  start_date: Date.new(2023,3,2),
+  end_date: Date.new(2023,3,6),
+  status: "confirmed"
+)
+
+Booking.create!(
+  user: julien,
+  costume: poisson,
+  start_date: Date.new(2023,3,8),
+  end_date: Date.new(2023,3,10),
+  status: "pending"
+)
+
+Booking.create!(
+  user: dulcie,
+  costume: poisson,
+  start_date: Date.new(2023,3,11),
+  end_date: Date.new(2023,3,14),
+  status: "pending"
+)
+
+Booking.create!(
+  user: mathieu,
+  costume: veste,
+  start_date: Date.new(2023,3,8),
+  end_date: Date.new(2023,3,10),
+  status: "confirmed"
+)
+
+Booking.create!(
+  user: julien,
+  costume: veste,
+  start_date: Date.new(2023,3,16),
+  end_date: Date.new(2023,3,18),
+  status: "pending"
+)
+
+puts "seed done"

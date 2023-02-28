@@ -1,13 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "costumes#index"
-<<<<<<< HEAD
   get "dashboard", to: "pages#dashboard"
 
-
-=======
   get "profile", to: "pages#profile"
->>>>>>> master
 
   resources :costumes do
     resources :bookings, only: [:new, :create]
