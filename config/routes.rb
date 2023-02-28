@@ -4,11 +4,13 @@ Rails.application.routes.draw do
   get "dashboard", to: "pages#dashboard"
 
 
-  resources :users, only: %i[show new create edit update] do
-    resources :costumes, only: %i[new create destroy edit update]
-    resources :bookings
+
+  resources :costumes do
+    resources :bookings, only: [:new, :create]
   end
-  resources :costumes, only: %i[index show]
+  resources :bookings, only: [:update, :destroy]
+
+
 end
 
 # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

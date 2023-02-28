@@ -1,7 +1,12 @@
-Bienvenue sur la page index des costumes
+<div class="banner mb-3" style="background-image: url(https://images.unsplash.com/photo-1523821741446-edb2b68bb7a0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80);">
+  <div class="container">
+    <h1>Costumizer</h1>
+    <h2>Be whoever you want, whenever you want</h2>
+  </div>
+</div>
 
-
-<div class="container">
+<div>
+  <h3> Bienvenue sur la page index des costumes </h3>
   <div class="row d-flex justify-content-between">
     <% @costumes.each do |costume| %>
        <%# if costume.available? %>
@@ -21,4 +26,4 @@ Bienvenue sur la page index des costumes
 </div>
 
 <%# si le user veut mettre un costume en location %>
-<%= link_to "ajouter un costume (si le user veut mettre un costume en location)",costumes_path %>
+<%= link_to "ajouter un costume (si le user veut mettre un costume en location)",new_costume_path %>

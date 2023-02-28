@@ -10,10 +10,12 @@ class CostumesController < ApplicationController
 
   def new
     @costume = Costume.new
+    @costume.user = current_user
   end
 
   def create
     @costume = Costume.new(costume_params)
+    @costume.user = current_user
     # attacher une image ?
     if @costume.save
       redirect_to costumes_path
