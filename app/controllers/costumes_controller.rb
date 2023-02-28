@@ -25,9 +25,23 @@ class CostumesController < ApplicationController
   end
 
   def destroy
+    @costume = set_costume
     @costume.destroy
+    redirect_to costumes_url, notice: "custume was successfully destroyed."
   end
 
+  def edit
+    @costume = set_costume
+  end
+
+  def update
+    @costume = set_costume
+    if @costume.update(costume_params)
+      redirect_to @costume, notice: "costume was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
   private
 
