@@ -35,4 +35,8 @@ class PagesController < ApplicationController
     # mes demandes de reza confirmée auprès d'autres loueurs
     @confirmed_bookings = Booking.where(user: current_user, status: "confirmed")
   end
+
+  def mycostumes
+    @mycostumes = Costume.where(user: current_user)
+  end
 end

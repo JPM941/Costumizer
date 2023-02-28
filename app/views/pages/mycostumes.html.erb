@@ -1,0 +1,16 @@
+<div class="me-auto mb-3">
+  <h1>All my costumes</h1>
+  <%= link_to "Go back to your bookings list", dashboard_path, class: "btn btn-flat"%>
+</div>
+
+<div class="cards">
+  <% @mycostumes.each do |costume| %>
+    <div class="card-trip mb-3">
+      <%# INSÉRER IMAGE <img src="#"> %>
+      <div class="card-trip-infos">
+        <h2> <%= costume.name %> </h2>
+        <p> <%= costume.price %> € </p>
+      </div>
+    </div>
+  <% end %>
+</div>
