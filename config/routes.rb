@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "costumes#index"
-
+  get "profile", to: "pages#profile"
 
   resources :costumes do
     resources :bookings, only: [:new, :create]
   end
   resources :bookings, only: [:update, :destroy]
-
 
 end
 
@@ -15,3 +14,4 @@ end
 
 # Defines the root path route ("/")
 # root "articles#index"
+p
