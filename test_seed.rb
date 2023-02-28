@@ -7,10 +7,6 @@ require "json"
 url = "https://www.google.com/search?q=vetements+bizarres"
 
 html_file = URI.open(url)
-html_doc = Nokogiri::HTML.parse(html_file)
+p html_doc = Nokogiri::HTML.parse(html_file)
 puts "                                            search                                            "
-html_doc.search("#vplap0").each do |element|
-
-  puts element
-
-end
+p doc = html_doc.search('#vplap0')
