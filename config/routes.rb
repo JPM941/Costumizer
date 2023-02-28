@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "costumes#index"
   get "dashboard", to: "pages#dashboard"
+  get "mycostumes", to: "pages#mycostumes"
 
   get "profile", to: "pages#profile"
 
