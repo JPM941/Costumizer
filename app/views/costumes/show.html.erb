@@ -1,4 +1,13 @@
-page de costume_path
-<br>
+<h1>page de costume_path</h1>
 
-nom : <%= "#{@costume.name}" %>
+<div class="card-trip">
+  <img src="#" />
+  <div class="card-trip-infos">
+    <div>
+      <h2><%= "#{@costume.name}" %></h2>
+      <p><%= "#{@costume.description}" %></p>
+    </div>
+    <h2 class="card-trip-pricing"><%= "#{@costume.price}" %>€</h2>
+    <%= link_to "Book this costume", new_costume_booking_path(@costume), class: "btn btn-ghost btn-sm"%>
+  </div>
+</div>
