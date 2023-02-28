@@ -10,15 +10,20 @@ class BookingsController < ApplicationController
   end
 
   def new
+    @costume = Costume.find(params[:costume_id])
     @booking = Booking.new
   end
 
   def create
     @booking = Booking.new(booking_params)
+    @costume = Costume.find(params[:costume_id])
+    @booking.costume = @costume
+    @booking.user = current_user
+    @booking.status = "pending"
     if @booking.save
-      redirect_to user_bookings_path
+      redirect_to dashboard_path
     else
-      render :new, status: unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
