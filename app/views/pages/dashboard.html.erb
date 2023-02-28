@@ -1,19 +1,71 @@
 <h1>My costumes</h1>
-<%= @mycostumes %>
+<%# <%= @mycostumes %>
 
 <h2> My client's pending bookings</h2>
-<%= @pending_requests.each do |request| %>
-<%= end %>
+
+  <div class="cards">
+    <% @pending_requests.each do |request| %>
+      <div class="card-trip mb-3">
+        <%# INSÉRER IMAGE <img src="#"> %>
+        <div class="card-trip-infos">
+          <h2> <%= request.costume.name %> </h2>
+          <p> <%= request.costume.price %> € </p>
+          <p> <%= request.start_date %> - <%= request.end_date %> </p>
+          <p> <%= request.costume.user.user_name %> </p>
+          <p> <%= request.status %> </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
 <h2> My client's confirmed bookings</h2>
-<%= @confirmed_requests.each do |request| %>
-<%= end %>
+  <div class="cards">
+    <% @confirmed_requests.each do |request| %>
+      <div class="card-trip mb-3">
+        <%# INSÉRER IMAGE <img src="#"> %>
+        <div class="card-trip-infos">
+          <h2> <%= request.costume.name %> </h2>
+          <p> <%= request.costume.price %> € </p>
+          <p> <%= request.start_date %> - <%= request.end_date %> </p>
+          <p> <%= request.costume.user.user_name %> </p>
+          <p> <%= request.status %> </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
 
 <h1> My bookings </h1>
-<%= @mybookings %>
+<%# <%= @mybookings %>
 
 <h2> My pending bookings</h2>
-<%= @pending_bookings %>
+  <div class="cards">
+    <% @pending_bookings.each do |request| %>
+      <div class="card-trip mb-3">
+        <%# INSÉRER IMAGE <img src="#"> %>
+        <div class="card-trip-infos">
+          <h2> <%= request.costume.name %> </h2>
+          <p> <%= request.costume.price %> € </p>
+          <p> <%= request.start_date %> - <%= request.end_date %> </p>
+          <p> <%= request.costume.user.user_name %> </p>
+          <p> <%= request.status %> </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
 <h2> My confirmed bookings</h2>
-<%= @confirmed_bookings %>
+  <div class="cards">
+    <% @confirmed_bookings.each do |request| %>
+      <div class="card-trip mb-3">
+        <%# INSÉRER IMAGE <img src="#"> %>
+        <div class="card-trip-infos">
+          <h2> <%= request.costume.name %> </h2>
+          <p> <%= request.costume.price %> € </p>
+          <p> <%= request.start_date %> - <%= request.end_date %> </p>
+          <p> <%= request.costume.user.user_name %> </p>
+          <p> <%= request.status %> </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
