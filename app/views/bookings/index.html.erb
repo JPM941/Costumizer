@@ -1,0 +1,26 @@
+<h1> Bienvenue sur la page d'index des réservations</h1>
+
+<div class="container">
+  <div class="row d-flex justify-content-between">
+
+    <%# IF RENTER%>
+    <%# PENDING RESA%>
+    <% @bookings.each do |booking| %>
+       <%# if booking.available? %>
+        <%= link_to booking_path(booking), class:"text-decoration-none" do%>
+          <div class="card-trip col-4 p-1">
+            <%# image à mettre %>
+            <div class="card-trip-infos">
+              <div>
+                <h2> <%= "#{booking.user_id} have made a reservation from #{booking.start_date} to #{booking.end_date}" %></h2>
+                <%# ajouter un bouton accept / decline %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+      <%# ACCEPTED RESA%>
+      <%# ELSE CLIENT%>
+
+  </div>
+</div>
