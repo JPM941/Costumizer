@@ -11,9 +11,9 @@ require 'open-uri'
 
 I18n.reload!
 
-User.destroy_all
-Costume.destroy_all
 Booking.destroy_all
+Costume.destroy_all
+User.destroy_all
 
 
   julien = User.create!(

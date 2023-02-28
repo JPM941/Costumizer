@@ -2,20 +2,24 @@ class CostumesController < ApplicationController
   before_action :set_costume, only: %i[show]
 
   def index
-    @costumes = Costume.all
+    @costumes = policy_scope(Costume)
+    authorize @costumes
   end
 
   def show
+    authorize @costume
   end
 
   def new
     @costume = Costume.new
+    authorize @costume
     @costume.user = current_user
   end
 
   def create
     @costume = Costume.new(costume_params)
     @costume.user = current_user
+    authorize @costume
     # attacher une image ?
     if @costume.save
       redirect_to costumes_path
