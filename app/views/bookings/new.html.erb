@@ -1,0 +1,9 @@
+<h1>Bienvenue sur la page de booking d'un costume</h1>
+
+<%= simple_form_for [@costume, @booking] do |f|%>
+  <%= f.input :start_date %>
+  <%= f.input :end_date %>
+  <%= f.submit "Validate booking", class: "btn btn-danger" %>
+<% end %>
+
+<%# <%= link_to "Go back to list of costumes", costumes_path, class: "btn btn-flat"%>
