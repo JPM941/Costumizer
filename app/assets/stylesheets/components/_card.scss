@@ -40,44 +40,44 @@
 
 .cards {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 16px;
 }
 
-// Smallest device
-@media (min-width: 100px) and (max-width: 575px) {
-  .cards {
-    grid-template-columns: 1fr;
-  }
-}
+// // Smallest device
+// @media (min-width: 100px) and (max-width: 575px) {
+//   .cards {
+//     grid-template-columns: 1fr;
+//   }
+// }
 
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) {
-  .cards {
-    grid-template-columns: 1fr;
-  }
-}
+// // Small devices (landscape phones, 576px and up)
+// @media (min-width: 576px) {
+//   .cards {
+//     grid-template-columns: 1fr;
+//   }
+// }
 
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {
-  .cards {
-    grid-template-columns: 1fr 1fr;
-  }
-}
+// // Medium devices (tablets, 768px and up)
+// @media (min-width: 768px) {
+//   .cards {
+//     grid-template-columns: 1fr 1fr;
+//   }
+// }
 
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) {
-  .cards {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
+// // Large devices (desktops, 992px and up)
+// @media (min-width: 992px) {
+//   .cards {
+//     grid-template-columns: 1fr 1fr 1fr;
+//   }
+// }
 
-// Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
-  .cards {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
+// // Extra large devices (large desktops, 1200px and up)
+// @media (min-width: 1200px) {
+//   .cards {
+//     grid-template-columns: 1fr 1fr 1fr;
+//   }
+// }
 
 .card-category {
   background-size: cover;
@@ -131,18 +131,24 @@
 
 .card-trip-index {
   overflow: hidden;
-  background: #5271FF;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  // background: #5271FF;
+  background: linear-gradient(90deg, #5271ff, transparent) #212f6e;
+  color: #fff;
   border-radius: 5px;
 }
 
 .card-trip-index:hover {
-  background: #1e2c68;
+  // background: #1e2c68;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
   transition: background-color 0.9s ease;
+  background: linear-gradient(90deg, #212f6e, transparent) #5271FF;
+  color: #fff;
+  transition: all .5s ease-in-out;
+  transform: scale(1.1);
 }
 
 .card-trip-index > img {
-  height: 200px;
+  height: 300px;
   width: 100%;
   object-fit: cover;
 }
