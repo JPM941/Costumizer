@@ -1,26 +1,32 @@
 
 <div class="container mt-4">
   <div class="row">
-      <div class="image_costume col-4">
+      <div class="col-8">
+        <% if @costume.images.attached? %>
+        <% @costume.images.each do |image| %>
+          <%= cl_image_tag image.key, height: 300, width: 400, crop: :fill %>
+          <% end %>
+        <% end %>
 
-        <% if @costume.image.attached? %>
-        <%= cl_image_tag @costume.image.key, height: 300, width: 400, crop: :fill %>
-        <% end %>
+
+
+
       </div>
-    <div class="col-8">
-          <h2><%= "#{@costume.name}" %></h2>
-          <p><%= "#{@costume.description}" %></p>
-          <h2 class="card-trip-pricing"><%= "#{@costume.price}" %>€</h2>
-        <% if current_user != @costume.user %>
-          <%= link_to "Book this costume", new_costume_booking_path(@costume), class: "btn-flat"%>
-        <% end %>
-        <% if current_user == @costume.user %>
-          <%= link_to "Delete",
-                          costume_path(@costume),
-                          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-                        %>
-          <%= link_to "Edit", edit_costume_path(@costume)%>
-        <% end %>
-    </div>
+
+
+      <div class="col-4">
+        <h2><%= "#{@costume.name}" %></h2>
+        <h3><%= "#{@costume.description}" %></h3>
+        <h2><%= "#{@costume.price}" %>€</h2>
+        <%= link_to "Book this costume", new_costume_booking_path(@costume), class: "btn-flat"%>
+          <% if current_user == @costume.user %>
+            <%= link_to "Delete",
+                costume_path(@costume),
+                data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+              %>
+            <%= link_to "Edit", edit_costume_path(@costume)%>
+            <% end %>
+      </div>
+
   </div>
 </div>
