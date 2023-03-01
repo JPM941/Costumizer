@@ -1,52 +1,21 @@
 
 <div class="container mt-4">
 
-  <div class="row mb-4">
-    <div class="col-6">
+  <div class="d-flex mb-4">
+    <div>
       <% if @costume.images.attached? %>
         <% @costume.images.each do |image| %>
           <%= cl_image_tag image.key, height: 400, width: 400, crop: :fill %>
         <% end %>
-
-      </div>
-      <div class="col-4">
-        <h2><%= "#{@costume.name}" %></h2>
-        <h3><%= "#{@costume.description}" %></h3>
-        <h2><%= "#{@costume.price}" %>€</h2>
-        <%= link_to "Book this costume", new_costume_booking_path(@costume), class: "btn-flat"%>
-          <% if current_user == @costume.user %>
-            <%= link_to "Delete",
-                costume_path(@costume),
-                data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-              %>
-            <%= link_to "Edit", edit_costume_path(@costume)%>
-            <% end %>
-      </div>
-  </div>
-
-  <div>
-    <%= link_to "Book this costume", new_costume_booking_path(@costume), class: "btn btn-ghost btn-sm"%>
-      <%  if current_user == @costume.user %>
-        <%= link_to "Delete",
-          costume_path(@costume),
-          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-        %>
-        <%= link_to "Edit", edit_costume_path(@costume)%>
-      <% end %>
-  </div>
-
       <% end %>
     </div>
-    <div class="col-6">
+
+    <div class="m-4">
       <h2><%= "#{@costume.name}" %></h2>
       <h3><%= "#{@costume.price}" %>€ / day</h2>
       <p>This wonderful costume is offered by <%= "#{@costume.user.user_name}" %> !</p>
       <%= link_to "Book this costume", new_costume_booking_path(@costume), class: "btn-flat"%>
-
-<%# AJOUT %>
-    <a href="#", class="text-decoration-none btn-flat"><i class="fas fa-heart"></i> Add to favorite</a>
-
-<%# FIN %>
+      <a href="#", class="text-decoration-none btn-flat"><i class="fas fa-heart"></i> Add to favorite</a>
     </div>
   </div>
 
@@ -59,34 +28,13 @@
           class: "btn-flat",
           data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
         %>
-      <% end %>
+    <% end %>
 
+  <h2>Costume's location</h2>
+  <div style="width: 100%; height: 300px;"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
 
-
-
-
-</div>
-
-  <%# <div class="mt-3">
-    <h2>Comments</h2>
-    <%# <div>
-      <h3>Give your review here :</h3>
-      <%= render 'costumes/reviewform' %>
-    <%# </div>
-    <div> %>
-      <%# <h3>All reviews (itération)</h3>
-        <div>
-        1 REVIEW SEEDING
-        </div>
-    </div> %>
-  <%# </div> %>
-
-<%# </div> %>
-
-
-</div>
-<div style="width: 100%; height: 600px;"
-  data-controller="map"
-  data-map-markers-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
 </div>
