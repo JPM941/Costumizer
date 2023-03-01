@@ -15,32 +15,41 @@ Booking.destroy_all
 Costume.destroy_all
 User.destroy_all
 
-  julien = User.create!(
-    email: "Julien@lewagon.fr",
-    password: "password",
-    # encrypted_password: '#$taawktljasktlw4aaglj',
-    user_name: "Julien",
-    description: "Le grand patron",
-    address: Faker::Address.city
-  )
+file = URI.open("https://medias.spotern.com/spots/w640/333/333700-1589526457.jpg")
+julien = User.new(
+  email: "Julien@lewagon.fr",
+  password: "password",
+  # encrypted_password: '#$taawktljasktlw4aaglj',
+  user_name: "Julien",
+  description: "Le grand patron",
+  address: Faker::Address.city
+)
+julien.avatar.attach(io: file, filename: "julien.jpg", content_type: "image/png")
+julien.save!
 
-  dulcie = User.create!(
-    email: "Dulcie@lewagon.fr",
-    password: "password",
-    # encrypted_password: '#$taawktljasktlw4aaglj',
-    user_name: "Dulcie",
-    description: "Le front c'est trop bien !",
-    address: Faker::Address.city
-  )
+file = URI.open("https://www.nextplz.fr/wp-content/uploads/nextplz/2019/05/cristianadellanna_official_57072731_442090446558610_5710319716844065195_n-e1557135141639.jpg")
+dulcie = User.create!(
+  email: "Dulcie@lewagon.fr",
+  password: "password",
+  # encrypted_password: '#$taawktljasktlw4aaglj',
+  user_name: "Dulcie",
+  description: "Le front c'est trop bien !",
+  address: Faker::Address.city
+)
+dulcie.avatar.attach(io: file, filename: "dulcie.jpg", content_type: "image/png")
+dulcie.save!
 
-  mathieu = User.create!(
-    email: "Mathieu@lewagon.fr",
-    password: "password",
+file = URI.open("https://thumb.canalplus.pro/http/unsafe/%7BresolutionXY%7D/smart/creativemedia-image.canalplus.pro/content/0001/41/fc5d5c03f7369a88844382d2f6e98c84716d4561.jpeg")
+mathieu = User.new(
+  email: "Mathieu@lewagon.fr",
+  password: "password",
     # encrypted_password: '#$taawktljasktlw4aaglj',
     user_name: "Mathieu",
     description: "Le back c'est trop bien !",
     address: Faker::Address.city
   )
+  mathieu.avatar.attach(io: file, filename: "mathieu.jpg", content_type: "image/png")
+  mathieu.save!
 
 file = URI.open("https://litb-cgis.rightinthebox.com/images/640x853/202109/bps/product/inc/laknyd1630989468948.jpg")
 poisson = Costume.new(name: "Sweet Poissons", description: "Homme Sweat à capuche Vert Bleu Marron Noir Capuche Graphic Poissons Imprimer Casual du quotidien 3D effet Vêtement de rue Casual Printemps & Automne Vêtement Tenue Pulls Capuche Pulls molletonnés", price: 50, user: mathieu)
