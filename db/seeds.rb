@@ -15,32 +15,41 @@ Booking.destroy_all
 Costume.destroy_all
 User.destroy_all
 
-  julien = User.create!(
-    email: "Julien@lewagon.fr",
-    password: "password",
-    # encrypted_password: '#$taawktljasktlw4aaglj',
-    user_name: "Julien",
-    description: "Le grand patron",
-    address: Faker::Address.city
-  )
+file = URI.open("https://medias.spotern.com/spots/w640/333/333700-1589526457.jpg")
+julien = User.new(
+  email: "Julien@lewagon.fr",
+  password: "password",
+  # encrypted_password: '#$taawktljasktlw4aaglj',
+  user_name: "Julien",
+  description: "Le grand patron",
+  address: Faker::Address.city
+)
+julien.avatar.attach(io: file, filename: "julien.jpg", content_type: "image/png")
+julien.save!
 
-  dulcie = User.create!(
-    email: "Dulcie@lewagon.fr",
-    password: "password",
-    # encrypted_password: '#$taawktljasktlw4aaglj',
-    user_name: "Dulcie",
-    description: "Le front c'est trop bien !",
-    address: Faker::Address.city
-  )
+file = URI.open("https://www.nextplz.fr/wp-content/uploads/nextplz/2019/05/cristianadellanna_official_57072731_442090446558610_5710319716844065195_n-e1557135141639.jpg")
+dulcie = User.create!(
+  email: "Dulcie@lewagon.fr",
+  password: "password",
+  # encrypted_password: '#$taawktljasktlw4aaglj',
+  user_name: "Dulcie",
+  description: "Le front c'est trop bien !",
+  address: Faker::Address.city
+)
+dulcie.avatar.attach(io: file, filename: "dulcie.jpg", content_type: "image/png")
+dulcie.save!
 
-  mathieu = User.create!(
-    email: "Mathieu@lewagon.fr",
-    password: "password",
+file = URI.open("https://thumb.canalplus.pro/http/unsafe/%7BresolutionXY%7D/smart/creativemedia-image.canalplus.pro/content/0001/41/fc5d5c03f7369a88844382d2f6e98c84716d4561.jpeg")
+mathieu = User.new(
+  email: "Mathieu@lewagon.fr",
+  password: "password",
     # encrypted_password: '#$taawktljasktlw4aaglj',
     user_name: "Mathieu",
     description: "Le back c'est trop bien !",
     address: Faker::Address.city
   )
+  mathieu.avatar.attach(io: file, filename: "mathieu.jpg", content_type: "image/png")
+  mathieu.save!
 
 file = File.open("app/assets/images/seed/microdose.jpg")
 microdose = Costume.new(name: "Microdose", description:"This mushroom costume is perfect for anyone who wants to add a touch of whimsy and playfulness to their wardrobe. The costume features a large, mushroom-shaped tunic with a stem and cap design, complete with realistic detailing and vibrant colors. The plush and soft material ensures that the costume is comfortable to wear, making it perfect for a night out or a costume party. The costume also includes a matching headpiece with attached mushroom cap, adding the perfect finishing touch to your ensemble. Whether you're heading out to a woodland-themed party or simply looking to add some fun to your wardrobe, this mushroom costume is the perfect choice. Get ready to take on the world with a touch of whimsy and a whole lot of fun!", price: 33, user: dulcie)
