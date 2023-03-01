@@ -21,6 +21,7 @@
 <%# FIN %>
     </div>
   </div>
+<<<<<<< HEAD
 
   <p style="text-align: justify"><%= "#{@costume.description}" %></p>
 
@@ -35,6 +36,8 @@
 
 
 
+=======
+>>>>>>> bb4854d652c95c3472ae4ca9a46d40d66b6576a4
   <%# <div class="mt-3">
     <h2>Comments</h2>
     <%# <div>
@@ -49,4 +52,9 @@
     </div> %>
   <%# </div> %>
 
+</div>
+<div style="width: 100%; height: 600px;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
 </div>
