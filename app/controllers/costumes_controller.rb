@@ -8,6 +8,15 @@ class CostumesController < ApplicationController
 
   def show
     authorize @costume
+    @costumes = []
+    @costumes << @costume
+    @markers = [
+      {
+        lat: @costume.geocode[0],
+        lng: @costume.geocode[1]
+      }
+    ]
+    # raise
   end
 
   def new
@@ -19,6 +28,7 @@ class CostumesController < ApplicationController
   def create
     @costume = Costume.new(costume_params)
     @costume.user = current_user
+    @costume.address = @costume.user.address
     authorize @costume
     # attacher une image ? se fait dans les params
     if @costume.save
@@ -55,6 +65,6 @@ class CostumesController < ApplicationController
   end
 
   def costume_params
-    params.require(:costume).permit(:name, :price, :description, images:[])
+    params.require(:costume).permit(:name, :price, :description, :address, images: [])
   end
 end
