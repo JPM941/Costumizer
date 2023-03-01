@@ -11,6 +11,7 @@
 
   <div class="cards">
     <% @costumes.each do |costume| %>
+<<<<<<< HEAD
        <%# if costume.available? %>
         <div class="card-trip">
           <% if costume.image.attached? %>
@@ -25,6 +26,22 @@
               </div>
           <% end %>
         </div>
+=======
+        <%# if costume.available? %>
+        <% if current_user != costume.user %>
+          <%= link_to costume_path(costume), class:"text-decoration-none" do%>
+            <div class="card-trip col-4 p-1">
+              <%# image à mettre %>
+              <div class="card-trip-infos">
+                <div>
+                  <h2> <%= "#{costume.name} #{costume.price}€" %></h2>
+                  <h2> <%= costume.description %> </h2>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+>>>>>>> master
       <% end %>
   </div>
 

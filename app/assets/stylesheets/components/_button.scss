@@ -15,14 +15,16 @@
 .btn-flat {
   color: white;
   padding: 8px 24px;
-  border-radius: 4px;
-  background: #670BFF;
-  transition: background 0.3s ease;
+  border-radius: 50px;
+  background: #5271FF;
+  transition: background 0.9s ease;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
 }
 
 .btn-flat:hover {
-  background: #4D04C4;
-  color: white;
+  background: #ffffff;
+  color: #5271FF;
 }
 
 .btn-gradient {

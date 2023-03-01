@@ -1,10 +1,26 @@
+
 <div class="container mt-4">
   <div class="row">
-    <%= cl_image_tag @costume.image.key, height: 300, width: 400, crop: :fill, class:"mb-3 col-4" %>
+      <div class="image_costume col-4">
+
+        <% if @costume.image.attached? %>
+        <%= cl_image_tag @costume.image.key, height: 300, width: 400, crop: :fill %>
+        <% end %>
+      </div>
     <div class="col-8">
-      <h1><%= "#{@costume.name}" %></h1>
-      <p><%= "#{@costume.description}" %></p>
-      <p><%= "#{@costume.price}" %>€</p>
+          <h2><%= "#{@costume.name}" %></h2>
+          <p><%= "#{@costume.description}" %></p>
+          <h2 class="card-trip-pricing"><%= "#{@costume.price}" %>€</h2>
+        <% if current_user != @costume.user %>
+          <%= link_to "Book this costume", new_costume_booking_path(@costume), class: "btn-flat"%>
+        <% end %>
+        <% if current_user == @costume.user %>
+          <%= link_to "Delete",
+                          costume_path(@costume),
+                          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+                        %>
+          <%= link_to "Edit", edit_costume_path(@costume)%>
+        <% end %>
     </div>
   </div>
   <div>
