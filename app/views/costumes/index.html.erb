@@ -5,27 +5,33 @@
   </div>
 </div>
 
-<div>
-  <h3> Bienvenue sur la page index des costumes </h3>
-  <div class="row d-flex justify-content-between">
+<div class="container mt-4">
+
+  <h2>Tous les costumes disponibles</h2>
+
+  <div class="cards">
     <% @costumes.each do |costume| %>
        <%# if costume.available? %>
-        <%= link_to costume_path(costume), class:"text-decoration-none" do%>
-          <div class="card-trip col-4 p-1">
-            <%# image à mettre %>
-            <div class="card-trip-infos">
-              <div>
-                <h2> <%= "#{costume.name} #{costume.price}€" %></h2>
-                <h2> <%= costume.description %> </h2>
+        <div class="card-trip">
+          <% if costume.image.attached? %>
+          <%= cl_image_tag costume.image.key, crop: :fill %>
+          <% end %>
+          <%= link_to costume_path(costume), class:"text-decoration-none" do%>
+              <div class="card-trip-infos">
+                <div>
+                  <h2> <%= "#{costume.name}" %></h2>
+                </div>
+                  <h2 class="card-trip-pricing"> <%= "#{costume.price}€" %> </h2>
               </div>
-            </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       <% end %>
   </div>
-</div>
+
 
 <%# si le user veut mettre un costume en location %>
 <%  if current_user %>
-<%= link_to "mettre un costume en location",new_costume_path %>
+<%= link_to "mettre un costume en location", new_costume_path %>
 <% end %>
+
+</div>

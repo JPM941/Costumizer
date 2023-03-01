@@ -1,8 +1,12 @@
-<%= simple_form_for (@costume), html: { multipart: true } do |f| %>
-  <%= f.input :name %>
-  <%= f.input :price %>
-  <%= f.input :description %>
-  <%= f.submit "Update Costume", class: "btn btn-danger" %>
-<% end %>
+<div class="container mt-4">
 
-<%= link_to "retour à la liste", costumes_path %>
+  <%= simple_form_for (@costume), html: { multipart: true } do |f| %>
+    <%= f.input :name %>
+    <%= f.input :price %>
+    <%= f.input :description %>
+    <%= f.submit "Update Costume", class: "btn btn-danger" %>
+  <% end %>
+
+  <%= link_to "retour à la liste", costumes_path %>
+
+</div>
