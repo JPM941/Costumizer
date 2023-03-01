@@ -1,7 +1,7 @@
-<%= simple_form_for (@costume), html: { multipart: true } do |f| %>
+<%= simple_form_for (@costume) do |f| %>
   <%= f.input :name %>
   <%= f.input :price %>
   <%= f.input :description %>
-  <%= f.input :image, as: :file %>
+  <%= f.input :images, as: :file, input_html: { multiple: true } %>
   <%= f.submit "Create new costume", class: "btn btn-danger" %>
 <% end %>
