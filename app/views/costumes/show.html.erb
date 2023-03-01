@@ -1,23 +1,24 @@
-<h1>page de costume_path</h1>
 
-<div class="card-trip">
-  <%= cl_image_tag @costume.image.key, height: 300, width: 400, crop: :fill %>
-  <div class="card-trip-infos">
-    <div>
+<div class="container mt-4">
+  <div class="row">
+      <div class="image_costume col-4">
 
-      <h2><%= "#{@costume.name}" %></h2>
-      <p><%= "#{@costume.description}" %></p>
+        <% if @costume.image.attached? %>
+        <%= cl_image_tag @costume.image.key, height: 300, width: 400, crop: :fill %>
+        <% end %>
+      </div>
+    <div class="col-8">
+          <h2><%= "#{@costume.name}" %></h2>
+          <p><%= "#{@costume.description}" %></p>
+          <h2 class="card-trip-pricing"><%= "#{@costume.price}" %>€</h2>
+          <%= link_to "Book this costume", new_costume_booking_path(@costume), class: "btn-flat"%>
+        <%  if current_user == @costume.user %>
+          <%= link_to "Delete",
+                          costume_path(@costume),
+                          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+                        %>
+          <%= link_to "Edit", edit_costume_path(@costume)%>
+        <% end %>
     </div>
-    <h2 class="card-trip-pricing"><%= "#{@costume.price}" %>€</h2>
-    <% if current_user != @costume.user %>
-      <%= link_to "Book this costume", new_costume_booking_path(@costume), class: "btn btn-ghost btn-sm"%>
-    <% end %>
-    <% if current_user == @costume.user %>
-      <%= link_to "Delete",
-                      costume_path(@costume),
-                      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-                    %>
-      <%= link_to "Edit", edit_costume_path(@costume)%>
-    <% end %>
   </div>
 </div>
