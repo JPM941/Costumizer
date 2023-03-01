@@ -9,17 +9,19 @@
   <h3> Bienvenue sur la page index des costumes </h3>
   <div class="row d-flex justify-content-between">
     <% @costumes.each do |costume| %>
-       <%# if costume.available? %>
-        <%= link_to costume_path(costume), class:"text-decoration-none" do%>
-          <div class="card-trip col-4 p-1">
-            <%# image à mettre %>
-            <div class="card-trip-infos">
-              <div>
-                <h2> <%= "#{costume.name} #{costume.price}€" %></h2>
-                <h2> <%= costume.description %> </h2>
+        <%# if costume.available? %>
+        <% if current_user != costume.user %>
+          <%= link_to costume_path(costume), class:"text-decoration-none" do%>
+            <div class="card-trip col-4 p-1">
+              <%# image à mettre %>
+              <div class="card-trip-infos">
+                <div>
+                  <h2> <%= "#{costume.name} #{costume.price}€" %></h2>
+                  <h2> <%= costume.description %> </h2>
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
       <% end %>
   </div>
