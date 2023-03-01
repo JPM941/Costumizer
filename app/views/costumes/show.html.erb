@@ -9,8 +9,10 @@
       <p><%= "#{@costume.description}" %></p>
     </div>
     <h2 class="card-trip-pricing"><%= "#{@costume.price}" %>€</h2>
+    <% if current_user != @costume.user %>
       <%= link_to "Book this costume", new_costume_booking_path(@costume), class: "btn btn-ghost btn-sm"%>
-    <%  if current_user == @costume.user %>
+    <% end %>
+    <% if current_user == @costume.user %>
       <%= link_to "Delete",
                       costume_path(@costume),
                       data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
