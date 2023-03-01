@@ -22,7 +22,6 @@
   margin: 0;
 }
 
-
 .card-trip .card-trip-infos {
   padding: 16px;
   display: flex;
@@ -95,27 +94,6 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
-
-// VERSION INDEX
-
-.card-trip-index {
-  overflow: hidden;
-  background: #5271FF;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  border-radius: 5px;
-}
-
-.card-trip-index:hover {
-  background: #1e2c68;
-  transition: background-color 0.9s ease;
-}
-
-.card-trip-index > img {
-  height: 200px;
-  width: 100%;
-  object-fit: cover;
-}
-
 .card-product {
   overflow: hidden;
   height: 120px;
@@ -137,6 +115,39 @@
   margin: 0;
 }
 
+.card-product p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-product .card-product-infos {
+  padding: 16px;
+}
+
+// VERSION INDEX
+
+.card-trip-index {
+  overflow: hidden;
+  background: #5271FF;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+}
+
+.card-trip-index:hover {
+  background: #1e2c68;
+  transition: background-color 0.9s ease;
+}
+
+.card-trip-index > img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+
 .card-trip-index p {
   opacity: .7;
   margin: 0;
@@ -148,16 +159,11 @@
   justify-content: space-between;
   align-items: flex-end;
   position: relative;
-  color: white
-
-.card-product p {
-  font-size: 12px;
-  line-height: 1.4;
-  opacity: .7;
-  margin-bottom: 0;
-  margin-top: 8px;
 }
 
-.card-product .card-product-infos {
-  padding: 16px;
+.card-trip-index .card-trip-infos-index h2 {
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  margin-top: 2px;
 }

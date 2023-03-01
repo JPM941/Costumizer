@@ -17,8 +17,8 @@
     <% @costumes.each do |costume| %>
        <%# if costume.available? %>
         <div class="card-trip-index">
-          <% if costume.image.attached? %>
-          <%= cl_image_tag costume.image.key, crop: :fill %>
+          <% if costume.images.attached? %>
+            <%= cl_image_tag costume.images.first.key, crop: :fill  %>
           <% end %>
           <%= link_to costume_path(costume), class:"text-decoration-none" do%>
               <div class="card-trip-infos-index">

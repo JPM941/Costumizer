@@ -44,19 +44,19 @@ User.destroy_all
 
 file = URI.open("https://litb-cgis.rightinthebox.com/images/640x853/202109/bps/product/inc/laknyd1630989468948.jpg")
 poisson = Costume.new(name: "Sweet Poissons", description: "Homme Sweat à capuche Vert Bleu Marron Noir Capuche Graphic Poissons Imprimer Casual du quotidien 3D effet Vêtement de rue Casual Printemps & Automne Vêtement Tenue Pulls Capuche Pulls molletonnés", price: 50, user: mathieu)
-poisson.image.attach(io: file, filename: "poissons.jpg", content_type: "image/png")
+poisson.images.attach(io: file, filename: "poissons.jpg", content_type: "image/png")
 poisson.save!
 
 file = URI.open("https://litb-cgis.rightinthebox.com/images/640x640/202101/bps/product/inc/jprvpc1610949407078.jpg")
 sweet = Costume.new(name: "Sweet 3D bleu", description: "Sweat à capuche Garçon Enfants manche longue 3D effet Graphic Bleu Enfants Hauts Automne Printemps Frais du quotidien 3-12 ans", price: 20, user: julien)
-sweet.image.attach(io: file, filename: "3dbleu.jpg", content_type: "image/png")
+sweet.images.attach(io: file, filename: "3dbleu.jpg", content_type: "image/png")
 sweet.save!
 
 file = URI.open("https://m.media-amazon.com/images/I/616MS6r1lsL._AC_UX522_.jpg")
 veste = Costume.new(name: "Veste gothique", description: "keland Veste gothique à épaulettes et gilet plumes naturelles pour homme, fête d'Halloween", price: 100, user: dulcie)
-veste.image.attach(io: file, filename: "3dbleu.jpg", content_type: "image/png")
+veste.images.attach(io: file, filename: "3dbleu.jpg", content_type: "image/png")
 veste.save!
-veste.image.key
+# veste.image.key
 puts "seeding bookings"
 
 Booking.create!(
