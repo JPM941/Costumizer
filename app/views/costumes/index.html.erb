@@ -17,21 +17,20 @@
 
   <div class="cards">
     <% @costumes.each do |costume| %>
-       <%# if costume.available? %>
+      <%= link_to costume_path(costume), class:"text-decoration-none" do%>
         <div class="card-trip-index">
           <% if costume.images.attached? %>
             <%= cl_image_tag costume.images.first.key, crop: :fill  %>
           <% end %>
-          <%= link_to costume_path(costume), class:"text-decoration-none" do%>
-              <div class="card-trip-infos-index">
-                <div>
-                  <h2> <%= "#{costume.name}" %></h2>
-                </div>
-                  <h2 class="card-trip-pricing-index"> <%= "#{costume.price}€" %> </h2>
-              </div>
-          <% end %>
+          <div class="card-trip-infos-index">
+            <div>
+              <h2> <%= "#{costume.name}" %></h2>
+            </div>
+              <h2 class="card-trip-pricing-index"> <%= "#{costume.price}€" %> </h2>
+          </div>
         </div>
       <% end %>
+    <% end %>
   </div>
 
 
