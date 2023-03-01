@@ -2,18 +2,12 @@
 
 <div class="row">
   <div class="col">
-
     <%= simple_form_for [@costume, @booking],
       html: {data: {controller: 'flatpickr'}}  do |f|%>
-        <%= f.input :start_date, as: :string, input_html: {data: {flatpickr_target: 'startDateInput',} } %>
-        <%= f.input :end_date, as: :string, input_html: {class: 'd-none', data: {flatpickr_target: 'endDateInput'}} %>
+        <%= f.input :start_date, label: false, as: :string, input_html: {class: 'd-none', data: {flatpickr_target: 'startDateInput'} } %>
+        <%= f.input :end_date, label: false, as: :string, input_html: {class: 'd-none', data: {flatpickr_target: 'endDateInput'}} %>
 
         <%= f.submit 'Book now!', class: 'btn btn-primary' %>
       <% end %>
   </div>
 </div>
-
-
-<%# <%= link_to "Go back to list of costumes", costumes_path, class: "btn btn-flat"%>
-  <%= f.submit 'Book now!', class: 'btn btn-primary' %>
-<% end %>
