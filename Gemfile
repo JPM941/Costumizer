@@ -7,6 +7,7 @@ gem 'nokogiri'
 gem 'open-uri'
 gem 'cloudinary'
 gem "dotenv-rails", groups: [:development, :test]
+gem 'pundit'
 
 gem 'faker'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
