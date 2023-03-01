@@ -1,11 +1,12 @@
 
 <div class="container mt-4">
   <div class="row">
-      <div class="image_costume col-4">
+      <div class="col-4">
 
         <% if @costume.image.attached? %>
-        <%= cl_image_tag @costume.image.key, height: 300, width: 400, crop: :fill %>
+        <%= cl_image_tag @costume.image.key, height: 300, width: 400, crop: :fill, class:"image_costume" %>
         <% end %>
+
       </div>
     <div class="col-8">
           <h2><%= "#{@costume.name}" %></h2>
