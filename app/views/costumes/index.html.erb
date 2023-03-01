@@ -7,48 +7,32 @@
 
 <div class="container mt-4">
 
-  <h2>Tous les costumes disponibles</h2>
-
+  <div class="d-flex mb-4">
+    <h2 class="p-2 w-100">Tous les costumes disponibles</h2>
+    <%  if current_user %>
+    <%= link_to "Add a costume", new_costume_path, class:"p2 btn btn-ghost" %>
+    <% end %>
+  </div>
   <div class="cards">
     <% @costumes.each do |costume| %>
-<<<<<<< HEAD
        <%# if costume.available? %>
-        <div class="card-trip">
+        <div class="card-trip-index">
           <% if costume.image.attached? %>
           <%= cl_image_tag costume.image.key, crop: :fill %>
           <% end %>
           <%= link_to costume_path(costume), class:"text-decoration-none" do%>
-              <div class="card-trip-infos">
+              <div class="card-trip-infos-index">
                 <div>
                   <h2> <%= "#{costume.name}" %></h2>
                 </div>
-                  <h2 class="card-trip-pricing"> <%= "#{costume.price}€" %> </h2>
+                  <h2 class="card-trip-pricing-index"> <%= "#{costume.price}€" %> </h2>
               </div>
           <% end %>
         </div>
-=======
-        <%# if costume.available? %>
-        <% if current_user != costume.user %>
-          <%= link_to costume_path(costume), class:"text-decoration-none" do%>
-            <div class="card-trip col-4 p-1">
-              <%# image à mettre %>
-              <div class="card-trip-infos">
-                <div>
-                  <h2> <%= "#{costume.name} #{costume.price}€" %></h2>
-                  <h2> <%= costume.description %> </h2>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
->>>>>>> master
       <% end %>
   </div>
 
 
 <%# si le user veut mettre un costume en location %>
-<%  if current_user %>
-<%= link_to "mettre un costume en location", new_costume_path %>
-<% end %>
 
 </div>

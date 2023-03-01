@@ -94,3 +94,45 @@
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
+
+
+// VERSION INDEX
+
+.card-trip-index {
+  overflow: hidden;
+  background: #5271FF;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+}
+
+.card-trip-index:hover {
+  background: #1e2c68;
+  transition: background-color 0.9s ease;
+}
+
+.card-trip-index > img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-trip-index h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-trip-index p {
+  opacity: .7;
+  margin: 0;
+}
+
+
+.card-trip-index .card-trip-infos-index {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  color: white
+}
