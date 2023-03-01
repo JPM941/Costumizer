@@ -1,76 +1,90 @@
-<div class="me-auto mb-3">
-  <h1>My costumes</h1>
-  <%= link_to "See my list of costumes", mycostumes_path, class: "btn btn-flat"%>
+<div class="container mt-4">
+
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">My bookings</button>
+      <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">My requests</button>
+      <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">My costumes</button>
+    </div>
+  </nav>
+
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+      <h2> My pending bookings</h2>
+        <div class="cards">
+          <% @pending_bookings.each do |request| %>
+            <div class="card-trip mb-3">
+              <%# INSÉRER IMAGE <img src="#"> %>
+              <div class="card-trip-infos">
+                <h2> <%= request.costume.name %> </h2>
+                <p> <%= request.costume.price * (request.end_date - request.start_date).to_i %> € </p>
+                <p> <%= request.start_date %> - <%= request.end_date %> </p>
+                <p> <%= request.costume.user.user_name %> </p>
+                <p> <%= request.status %> </p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+      <h2> My confirmed bookings</h2>
+        <div class="cards">
+          <% @confirmed_bookings.each do |request| %>
+            <div class="card-trip mb-3">
+              <%# INSÉRER IMAGE <img src="#"> %>
+              <div class="card-trip-infos">
+                <h2> <%= request.costume.name %> </h2>
+                <p> <%= request.costume.price * (request.end_date - request.start_date).to_i %> € </p>
+                <p> <%= request.start_date %> - <%= request.end_date %> </p>
+                <p> <%= request.costume.user.user_name %> </p>
+                <p> <%= request.status %> </p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+    </div>
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+      <h2> My client's pending requests</h2>
+      <div class="cards">
+        <% @pending_requests.each do |request| %>
+          <div class="card-trip mb-3">
+            <%# INSÉRER IMAGE <img src="#"> %>
+            <div class="card-trip-infos">
+              <h2> <%= request.costume.name %> </h2>
+              <p> <%= request.costume.price * (request.end_date - request.start_date).to_i %> € </p>
+              <p> <%= request.start_date %> - <%= request.end_date %> </p>
+              <p> <%= request.costume.user.user_name %> </p>
+              <p> <%= request.status %> </p>
+              <%= button_to "confirm", accept_path(request)%>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <h2> My client's confirmed requests</h2>
+      <div class="cards">
+        <% @confirmed_requests.each do |request| %>
+          <div class="card-trip mb-3">
+            <%# INSÉRER IMAGE <img src="#"> %>
+            <div class="card-trip-infos">
+              <h2> <%= request.costume.name %> </h2>
+              <p> <%= request.costume.price * (request.end_date - request.start_date).to_i %> € </p>
+              <p> <%= request.start_date %> - <%= request.end_date %> </p>
+              <p> <%= request.costume.user.user_name %> </p>
+              <p> <%= request.status %> </p>
+            </div>
+
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+
+    </div>
+  </div>
+
+
 </div>
-
-
-<h2> My client's pending bookings</h2>
-
-  <div class="cards">
-    <% @pending_requests.each do |request| %>
-      <div class="card-trip mb-3">
-        <%# INSÉRER IMAGE <img src="#"> %>
-        <div class="card-trip-infos">
-          <h2> <%= request.costume.name %> </h2>
-          <p> <%= request.costume.price * (request.end_date - request.start_date).to_i %> € </p>
-          <p> <%= request.start_date %> - <%= request.end_date %> </p>
-          <p> <%= request.costume.user.user_name %> </p>
-          <p> <%= request.status %> </p>
-          <%= button_to "confirm", accept_path(request)%>
-        </div>
-      </div>
-    <% end %>
-  </div>
-
-<h2> My client's confirmed bookings</h2>
-  <div class="cards">
-    <% @confirmed_requests.each do |request| %>
-      <div class="card-trip mb-3">
-        <%# INSÉRER IMAGE <img src="#"> %>
-        <div class="card-trip-infos">
-          <h2> <%= request.costume.name %> </h2>
-          <p> <%= request.costume.price * (request.end_date - request.start_date).to_i %> € </p>
-          <p> <%= request.start_date %> - <%= request.end_date %> </p>
-          <p> <%= request.costume.user.user_name %> </p>
-          <p> <%= request.status %> </p>
-        </div>
-      </div>
-    <% end %>
-  </div>
-
-
-<h1> My bookings </h1>
-<%# <%= @mybookings %>
-
-<h2> My pending bookings</h2>
-  <div class="cards">
-    <% @pending_bookings.each do |request| %>
-      <div class="card-trip mb-3">
-        <%# INSÉRER IMAGE <img src="#"> %>
-        <div class="card-trip-infos">
-          <h2> <%= request.costume.name %> </h2>
-          <p> <%= request.costume.price * (request.end_date - request.start_date).to_i %> € </p>
-          <p> <%= request.start_date %> - <%= request.end_date %> </p>
-          <p> <%= request.costume.user.user_name %> </p>
-          <p> <%= request.status %> </p>
-        </div>
-      </div>
-    <% end %>
-  </div>
-
-<h2> My confirmed bookings</h2>
-
-  <div class="cards">
-    <% @confirmed_bookings.each do |request| %>
-      <div class="card-trip mb-3">
-        <%# INSÉRER IMAGE <img src="#"> %>
-        <div class="card-trip-infos">
-          <h2> <%= request.costume.name %> </h2>
-          <p> <%= request.costume.price * (request.end_date - request.start_date).to_i %> € </p>
-          <p> <%= request.start_date %> - <%= request.end_date %> </p>
-          <p> <%= request.costume.user.user_name %> </p>
-          <p> <%= request.status %> </p>
-        </div>
-      </div>
-    <% end %>
-  </div>
