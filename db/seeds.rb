@@ -11,6 +11,7 @@ require 'open-uri'
 
 I18n.reload!
 
+Review.destroy_all
 Booking.destroy_all
 Costume.destroy_all
 User.destroy_all
@@ -161,5 +162,16 @@ Booking.create!(
   end_date: Date.new(2023,3,18),
   status: "pending"
 )
+
+20.times do
+  Booking.all.each do |booking|
+    Review.create!(
+      rating: (0..5).to_a.sample,
+      booking: booking,
+      content: "review's content to seed"
+    )
+  end
+end
+
 
 puts "seed done"

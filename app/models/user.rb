@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :costumes
   has_many :bookings
+  has_many :reviews
   has_many :requests, through: :costumes, source: :bookings
   has_many :bookmarks, dependent: :destroy
   has_many :favorite_costumes, through: :bookmarks, source: :costume

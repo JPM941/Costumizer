@@ -13,8 +13,6 @@ class CostumesController < ApplicationController
     end
 
     @costumes = Costume.all if @costumes.empty?
-
-
   end
 
   def show
@@ -27,7 +25,6 @@ class CostumesController < ApplicationController
         lng: @costume.geocode[1],
         marker_html: render_to_string(partial: "marker")
       }
-
     ]
   end
 
@@ -44,7 +41,6 @@ class CostumesController < ApplicationController
     authorize @costume
     # attacher une image ? se fait dans les params
     if @costume.save
-
       redirect_to costumes_path
     else
       render :new, status: :unprocessable_entity
