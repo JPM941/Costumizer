@@ -167,7 +167,8 @@ Booking.create!(
   Booking.all.each do |booking|
     Review.create!(
       rating: (0..5).to_a.sample,
-      booking: booking
+      booking: booking,
+      content: "review's content to seed"
     )
   end
 end
