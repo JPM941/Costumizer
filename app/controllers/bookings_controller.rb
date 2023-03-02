@@ -64,7 +64,6 @@ class BookingsController < ApplicationController
     @booking.status = "closed"
     @booking.save
     redirect_to new_booking_review_path(@booking)
-    raise
   end
 
   private
