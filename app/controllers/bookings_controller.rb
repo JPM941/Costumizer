@@ -50,12 +50,20 @@ class BookingsController < ApplicationController
     redirect_to user_bookings_path
   end
 
-  def booking_status
+  def accept
     set_booking
     authorize @booking
     @booking.status = "confirmed"
     @booking.save
     redirect_to dashboard_path
+  end
+
+  def close
+    set_booking
+    authorize @booking
+    @booking.status = "closed"
+    @booking.save
+    redirect_to new_booking_review_path(@booking)
   end
 
   private

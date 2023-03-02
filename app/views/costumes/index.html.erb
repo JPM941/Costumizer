@@ -9,7 +9,6 @@
 <div class="container mt-4">
 
   <div class="d-flex mb-4">
-
     <%# <%  if current_user %>
     <%# <%= link_to "Add a costume", new_costume_path, class:"p2 btn btn-ghost" %>
     <%# <% end %>
@@ -18,18 +17,20 @@
 
   <div class="cards">
     <% @costumes.each do |costume| %>
-      <%= link_to costume_path(costume), class:"text-decoration-none" do%>
-        <div class="card-trip-index">
-          <% if costume.images.attached? %>
-            <%= cl_image_tag costume.images.first.key, crop: :fill  %>
-          <% end %>
-          <div class="card-trip-infos-index">
-            <div>
-              <h2> <%= "#{costume.name}" %></h2>
+      <% if costume.user != current_user %>
+        <%= link_to costume_path(costume), class:"text-decoration-none" do%>
+          <div class="card-trip-index">
+            <% if costume.images.attached? %>
+              <%= cl_image_tag costume.images.first.key, crop: :fill  %>
+            <% end %>
+            <div class="card-trip-infos-index">
+              <div>
+                <h2> <%= "#{costume.name}" %></h2>
+              </div>
+                <h2 class="card-trip-pricing-index"> <%= "#{costume.price}€" %> </h2>
             </div>
-              <h2 class="card-trip-pricing-index"> <%= "#{costume.price}€" %> </h2>
           </div>
-        </div>
+        <% end %>
       <% end %>
     <% end %>
   </div>

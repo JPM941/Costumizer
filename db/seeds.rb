@@ -11,9 +11,12 @@ require 'open-uri'
 
 I18n.reload!
 
+Review.destroy_all
 Booking.destroy_all
 Costume.destroy_all
 User.destroy_all
+
+puts "seeding users..."
 
 file = URI.open("https://medias.spotern.com/spots/w640/333/333700-1589526457.jpg")
 julien = User.new(
@@ -39,18 +42,22 @@ dulcie = User.create!(
 dulcie.avatar.attach(io: file, filename: "dulcie.jpg", content_type: "image/png")
 dulcie.save!
 
+
 file = URI.open("https://thumb.canalplus.pro/http/unsafe/%7BresolutionXY%7D/smart/creativemedia-image.canalplus.pro/content/0001/41/fc5d5c03f7369a88844382d2f6e98c84716d4561.jpeg")
 mathieu = User.new(
   email: "Mathieu@lewagon.fr",
   password: "password",
-    # encrypted_password: '#$taawktljasktlw4aaglj',
-    user_name: "Mathieu",
-    description: "Le back c'est trop bien !",
-    address: "Saint-denis"
-  )
-  mathieu.avatar.attach(io: file, filename: "mathieu.jpg", content_type: "image/png")
-  mathieu.save!
+  # encrypted_password: '#$taawktljasktlw4aaglj',
+  user_name: "Mathieu",
+  description: "Le back c'est trop bien !",
+  address: "Saint-denis"
+)
+mathieu.avatar.attach(io: file, filename: "mathieu.jpg", content_type: "image/png")
+mathieu.save!
 
+puts "seeded #{User.count} users"
+
+puts "seeding costumes..."
 file = File.open("app/assets/images/seed/microdose.jpg")
 microdose = Costume.new(name: "Microdose", description:"This mushroom costume is perfect for anyone who wants to add a touch of whimsy and playfulness to their wardrobe. The costume features a large, mushroom-shaped tunic with a stem and cap design, complete with realistic detailing and vibrant colors. The plush and soft material ensures that the costume is comfortable to wear, making it perfect for a night out or a costume party. The costume also includes a matching headpiece with attached mushroom cap, adding the perfect finishing touch to your ensemble. Whether you're heading out to a woodland-themed party or simply looking to add some fun to your wardrobe, this mushroom costume is the perfect choice. Get ready to take on the world with a touch of whimsy and a whole lot of fun!", price: 33, user: dulcie)
 microdose.images.attach(io: file, filename: "microdose.jpg", content_type: "image/png")
@@ -118,9 +125,10 @@ pinata.images.attach(io: file, filename: "pinata.jpg", content_type: "image/png"
 pinata.address = pinata.user.address
 pinata.save!
 
+puts "seeded #{Costume.count} costumes"
 
 
-puts "seeding bookings"
+puts "seeding bookings..."
 
 Booking.create!(
   user: dulcie,
@@ -161,5 +169,17 @@ Booking.create!(
   end_date: Date.new(2023,3,18),
   status: "pending"
 )
+puts "seeded #{Booking.count} bookings"
+
+
+puts "seeding reviews..."
+  Booking.all.each do |booking|
+    Review.create!(
+      rating: (1..5).to_a.sample,
+      booking: booking,
+      content: "review's content to seed"
+    )
+  end
+puts "seeded #{Review.count} reviews"
 
 puts "seed done"

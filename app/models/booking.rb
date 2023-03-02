@@ -1,6 +1,7 @@
 class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :costume
+  has_one :review
 
   validates :start_date, :end_date, presence: true, if: :correct_date?
   validates :status, presence: true

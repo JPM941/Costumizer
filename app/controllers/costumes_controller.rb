@@ -1,9 +1,18 @@
 class CostumesController < ApplicationController
   before_action :set_costume, only: %i[show destroy edit update]
   skip_before_action :authenticate_user!, only: %i[index show]
+
   def index
     @costumes = policy_scope(Costume)
     authorize @costumes
+
+    if params[:query]
+      @costumes = Costume.search_by_name_and_description("#{params[:query]}")
+    else
+      @costumes = Costume.all
+    end
+
+    @costumes = Costume.all if @costumes.empty?
   end
 
   def show
@@ -13,10 +22,10 @@ class CostumesController < ApplicationController
     @markers = [
       {
         lat: @costume.geocode[0],
-        lng: @costume.geocode[1]
+        lng: @costume.geocode[1],
+        marker_html: render_to_string(partial: "marker")
       }
     ]
-    # raise
   end
 
   def new
@@ -32,7 +41,6 @@ class CostumesController < ApplicationController
     authorize @costume
     # attacher une image ? se fait dans les params
     if @costume.save
-
       redirect_to costumes_path
     else
       render :new, status: :unprocessable_entity
@@ -65,6 +73,6 @@ class CostumesController < ApplicationController
   end
 
   def costume_params
-    params.require(:costume).permit(:name, :price, :description, :address, images: [])
+    params.require(:costume).permit(:name, :price, :description, :address, images: [], query:)
   end
 end

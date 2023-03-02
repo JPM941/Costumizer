@@ -149,7 +149,7 @@
 }
 
 .card-trip-index > img {
-  height: 300px;
+  height: 400px;
   width: 100%;
   object-fit: cover;
 }
@@ -173,4 +173,80 @@
   font-weight: bold;
   color: white;
   margin-top: 2px;
+}
+
+
+// PRODUCT CARDS
+
+.card-product {
+  overflow: hidden;
+  height: 250px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.card-product img {
+  height: 100%;
+  width: 170px;
+  object-fit: cover;
+}
+
+.card-product h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-product p {
+  font-size: 16px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-product .card-product-infos {
+  padding: 16px;
+  width: 100%;
+}
+
+.row > * {
+  padding-left: 0px;
+}
+
+// PRODUCT CARDS GRID
+
+.cards-product-grid {
+  display : grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap : 16px;
+}
+
+@media(max-width: 992px) {
+  .cards-product-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media(max-width: 768px) {
+  .cards-product-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+// REVIEW CARD
+
+.review-card {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(144, 144, 144, 0.1);
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.review-card p {
+  padding-left: 10px;
 }
