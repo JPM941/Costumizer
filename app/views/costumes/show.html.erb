@@ -13,7 +13,7 @@
     <div class="m-4">
       <h2><%= "#{@costume.name}" %></h2>
       <h3><%= "#{@costume.price}" %>€ / day</h2>
-      <% if @costume.bookings.empty? %>
+      <% unless @costume.bookings.empty? %>
         <% @note ||= 0 %>
           <% @costume.bookings.each do |booking|%>
           <% @note += booking.review.rating %>
@@ -54,13 +54,13 @@
   <div class="map-comment-grid">
     <div>
       <h2 class="mt-4">Reviews</h2>
-        <% @costume.reviews.each do |review| %>
+        <% @costume.bookings.each do |booking| %>
           <div class="review-card">
-            <p class="pt-3">Posted by USERNAME<p>
-            <% (1..review.rating).to_a.each do |star| %>
+            <p class="pt-3">Posted by <%= @costume.user.user_name %> <p>
+            <% (1..booking.review.rating).to_a.each do |star| %>
               <i class="fa-solid fa-star active"></i>
             <% end %>
-            <p class="mt-3 pb-3"><%= review.content %></p>
+            <p class="mt-3 pb-3"><%= booking.review.content %></p>
           </div>
         <% end %>
       </ul>
@@ -79,11 +79,3 @@
 
 
 </div>
-<p><strong>Reviews</strong></p>
-<ul class="list-group">
-  <% @costume.bookings.each do |booking|%>
-    <li class="list-group-item"><%= booking.review.content %></li>
-    <li class="list_group_item"><%= "#{booking.review.rating}/5"%>
-  <% end %>
-</ul>
-<br>
