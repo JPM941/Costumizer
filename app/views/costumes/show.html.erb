@@ -20,7 +20,18 @@
       <%end%>
       <p>This wonderful costume is offered by <%= "#{@costume.user.user_name}" %> !</p>
       <%= link_to "Book this costume", new_costume_booking_path(@costume), class: "btn-flat"%>
-      <a href="#", class="text-decoration-none btn-flat"><i class="fas fa-heart"></i> Add to favorite</a>
+      <% if current_user %>
+        <% unless Bookmark.where({user: current_user, costume: @costume}).any? %>
+          <%= link_to costume_bookmarks_path(@costume),data: {turbo_method: :post}, class:"text-decoration-none btn-flat" do %>
+            <i class="fas fa-heart"></i> Add to favorite
+          <% end %>
+        <% else %>
+          <%= link_to bookmark_path(Bookmark.where({user: current_user, costume: @costume}).first),data: {turbo_method: :delete}, class:"text-decoration-none btn-flat" do %>
+            <i class="fas fa-heart"></i> Remove from favorite
+          <% end %>
+        <% end %>
+
+      <% end %>
     </div>
   </div>
 
