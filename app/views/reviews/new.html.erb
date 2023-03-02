@@ -2,7 +2,7 @@
   <h1>Add your review</h1>
   <div data-controller="star">
 
-    <%= simple_form_for [@costume, @review] do |f| %>
+    <%= simple_form_for [@booking, @review] do |f| %>
       <%= f.input :content %>
       <p>Rating</p>
       <i class="fa-solid fa-star" data-star-target="star" data-action="click->star#rate" data-rating= "1"></i>

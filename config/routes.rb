@@ -8,10 +8,14 @@ Rails.application.routes.draw do
   get "profile", to: "pages#profile"
 
   resources :costumes do
-    resources :reviews, only: [:new, :create]
+    resources :bookmarks, only: [:create]
     resources :bookings, only: [:new, :create]
   end
+
+  resources :bookmarks, only: :destroy
+
   resources :bookings, only: [:update, :destroy] do
+    resources :reviews, only: [:new, :create]
     member do
       post :accept
       post :close
