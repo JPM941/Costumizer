@@ -7,7 +7,7 @@ class CostumesController < ApplicationController
     authorize @costumes
     if params[:query]
       @costumes = Costume.search_by_name_and_description("#{params[:query]}")
-      @costumes = @costumes.reject { |costume| costume.user == current_user }
+      # @costumes = @costumes.reject { |costume| costume.user == current_user }
     else
       @costumes = Costume.all
     end
