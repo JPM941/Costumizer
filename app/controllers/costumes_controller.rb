@@ -5,12 +5,12 @@ class CostumesController < ApplicationController
   def index
     @costumes = policy_scope(Costume)
     authorize @costumes
-
     if params[:query]
       @costumes = Costume.search_by_name_and_description("#{params[:query]}")
     else
       @costumes = Costume.all
     end
+
 
     @costumes = Costume.all if @costumes.empty?
   end
