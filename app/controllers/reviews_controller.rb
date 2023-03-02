@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :set_costume, only: %i[new create]
+  before_action :set_booking, only: %i[new create]
   def new
     @booking = Booking.find(params[:booking_id])
     authorize @booking
@@ -13,13 +13,13 @@ class ReviewsController < ApplicationController
     @review.booking = @booking
     authorize @booking
     @review.save
-    redirect_to dashboard_path(@costume)
+    redirect_to dashboard_path
   end
 
   private
 
-  def set_costume
-    @costume = Costume.find(params[:costume_id])
+  def set_booking
+    @booking = Booking.find(params[:booking_id])
   end
 
   def review_params

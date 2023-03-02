@@ -9,13 +9,13 @@ Rails.application.routes.draw do
 
   resources :costumes do
     resources :bookmarks, only: [:create]
-    resources :reviews, only: [:new, :create]
     resources :bookings, only: [:new, :create]
   end
 
   resources :bookmarks, only: :destroy
 
   resources :bookings, only: [:update, :destroy] do
+    resources :reviews, only: [:new, :create]
     member do
       post :accept
       post :close

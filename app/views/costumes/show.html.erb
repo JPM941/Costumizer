@@ -13,17 +13,14 @@
     <div class="m-4">
       <h2><%= "#{@costume.name}" %></h2>
       <h3><%= "#{@costume.price}" %>€ / day</h2>
-      <% if @costume.bookings %>
+      <% if @costume.bookings.empty? %>
         <% @note ||= 0 %>
           <% @costume.bookings.each do |booking|%>
           <% @note += booking.review.rating %>
           <% end %>
         <%= "#{@note / @costume.bookings.length} / 5" %>
-        <p>This wonderful costume is offered by <%= "#{@costume.user.user_name}" %> !</p>
-        <%= link_to "Book this costume", new_costume_booking_path(@costume), class: "btn-flat"%>
-        <a href="#", class="text-decoration-none btn-flat"><i class="fas fa-heart"></i> Add to favorite</a>
       <% end %>
-      <%= "#{@note / @costume.bookings.length} / 5" %>
+
       <p>This wonderful costume is offered by <%= "#{@costume.user.user_name}" %> !</p>
       <%= link_to "Book this costume", new_costume_booking_path(@costume), class: "btn-flat"%>
       <% if current_user %>
