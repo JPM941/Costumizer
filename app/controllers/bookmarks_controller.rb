@@ -9,7 +9,7 @@ class BookmarksController < ApplicationController
     @bookmark = Bookmark.find(params[:id])
     authorize @bookmark
     @bookmark.destroy
-    redirect_to costume_path
+    # redirect_to costume_path
   end
   private
 

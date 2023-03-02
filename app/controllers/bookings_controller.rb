@@ -63,7 +63,8 @@ class BookingsController < ApplicationController
     authorize @booking
     @booking.status = "closed"
     @booking.save
-    redirect_to new_costume_review_path(@booking.costume)
+    redirect_to new_booking_review_path(@booking)
+    raise
   end
 
   private
