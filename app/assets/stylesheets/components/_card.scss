@@ -235,3 +235,17 @@
     grid-template-columns: 1fr;
   }
 }
+
+// REVIEW CARD
+
+.review-card {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(144, 144, 144, 0.1);
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.review-card p {
+  padding-left: 10px;
+}

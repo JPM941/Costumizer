@@ -1,6 +1,17 @@
-<h1>New review</h1>
-<%= simple_form_for [@costume, @review] do |f| %>
-  <%= f.input :content %>
-  <%= f.input :rating %>
-  <%= f.submit "Submit review", class: "btn btn-primary" %>
-<% end %>
+<div class="container mt-4">
+  <h1>Add your review</h1>
+  <div data-controller="star">
+
+    <%= simple_form_for [@costume, @review] do |f| %>
+      <%= f.input :content %>
+      <p>Rating</p>
+      <i class="fa-solid fa-star" data-star-target="star" data-action="click->star#rate" data-rating= "1"></i>
+      <i class="fa-solid fa-star" data-star-target="star" data-action="click->star#rate" data-rating= "2"></i>
+      <i class="fa-solid fa-star" data-star-target="star" data-action="click->star#rate" data-rating= "3"></i>
+      <i class="fa-solid fa-star" data-star-target="star" data-action="click->star#rate" data-rating= "4"></i>
+      <i class="fa-solid fa-star" data-star-target="star" data-action="click->star#rate" data-rating= "5"></i>
+      <%= f.input :rating, as: :hidden, input_html: { data: {star_target: "input"} } %>
+      <%= f.submit "Submit review", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

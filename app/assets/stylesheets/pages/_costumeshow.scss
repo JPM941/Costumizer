@@ -1,0 +1,17 @@
+.map-comment-grid {
+  display : grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap : 16px;
+}
+
+@media(max-width: 992px) {
+  .map-comment-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media(max-width: 768px) {
+  .map-comment-grid {
+    grid-template-columns: 1fr;
+  }
+}
