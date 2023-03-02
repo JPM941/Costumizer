@@ -24,8 +24,10 @@ class CostumesController < ApplicationController
     @markers = [
       {
         lat: @costume.geocode[0],
-        lng: @costume.geocode[1]
+        lng: @costume.geocode[1],
+        marker_html: render_to_string(partial: "marker")
       }
+
     ]
   end
 
