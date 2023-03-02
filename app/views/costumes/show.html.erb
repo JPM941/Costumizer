@@ -14,10 +14,10 @@
       <h2><%= "#{@costume.name}" %></h2>
       <h3><%= "#{@costume.price}" %>€ / day</h2>
       <% @note ||= 0 %>
-      <% @costume.reviews.each do |review|%>
-        <% @note += review.rating %>
-        <%= "#{@note / @costume.reviews.length} / 5" %>
-      <%end%>
+      <% @costume.bookings.each do |booking|%>
+        <% @note += booking.review.rating %>
+      <% end %>
+      <%= "#{@note / @costume.bookings.length} / 5" %>
       <p>This wonderful costume is offered by <%= "#{@costume.user.user_name}" %> !</p>
       <%= link_to "Book this costume", new_costume_booking_path(@costume), class: "btn-flat"%>
       <a href="#", class="text-decoration-none btn-flat"><i class="fas fa-heart"></i> Add to favorite</a>
@@ -47,9 +47,9 @@
 </div>
 <p><strong>Reviews</strong></p>
 <ul class="list-group">
-  <% @costume.reviews.each do |review| %>
-    <li class="list-group-item"><%= review.content %></li>
-    <li class="list_group_item"><%= "#{review.rating}/5"%>
+  <% @costume.bookings.each do |booking|%>
+    <li class="list-group-item"><%= booking.review.content %></li>
+    <li class="list_group_item"><%= "#{booking.review.rating}/5"%>
   <% end %>
 </ul>
 <br>
