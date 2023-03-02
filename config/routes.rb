@@ -8,9 +8,13 @@ Rails.application.routes.draw do
   get "profile", to: "pages#profile"
 
   resources :costumes do
+    resources :bookmarks, only: [:create]
     resources :reviews, only: [:new, :create]
     resources :bookings, only: [:new, :create]
   end
+
+  resources :bookmarks, only: :destroy
+
   resources :bookings, only: [:update, :destroy] do
     member do
       post :accept
