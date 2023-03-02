@@ -34,4 +34,27 @@
       <% end %>
     <% end %>
   </div>
+
+  <% if current_user %>
+  <h3>My Costumes</h3>
+    <div class="cards">
+    <% @costumes.each do |costume| %>
+      <% if costume.user == current_user %>
+        <%= link_to costume_path(costume), class:"text-decoration-none" do%>
+          <div class="card-trip-index">
+            <% if costume.images.attached? %>
+              <%= cl_image_tag costume.images.first.key, crop: :fill  %>
+            <% end %>
+            <div class="card-trip-infos-index">
+              <div>
+                <h2> <%= "#{costume.name}" %></h2>
+              </div>
+                <h2 class="card-trip-pricing-index"> <%= "#{costume.price}€" %> </h2>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+    </div>
+  <% end %>
 </div>
