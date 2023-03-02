@@ -11,33 +11,32 @@
   <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
-      <h2> My pending bookings</h2>
-        <div class="cards">
+      <h2 class="mt-4 mb-4"> My pending bookings</h2>
           <% @pending_bookings.each do |request| %>
-            <div class="card-trip mb-3">
-              <%# INSÉRER IMAGE <img src="#"> %>
-              <div class="card-trip-infos">
+            <div class="card-product mb-4">
+              <% if request.costume.images.attached? %>
+              <%= cl_image_tag request.costume.images.first.key, crop: :fill  %>
+              <% end %>
+              <div class="card-product-infos">
                 <h2> <%= request.costume.name %> </h2>
-                <p> <%= request.costume.price * (request.end_date - request.start_date).to_i %> € </p>
-                <p> <%= request.start_date %> - <%= request.end_date %> </p>
-                <p> <%= request.costume.user.user_name %> </p>
-                <p> <%= request.status %> </p>
+                <p> Price : <%= request.costume.price * (request.end_date - request.start_date).to_i %> € </p>
+                <p> From <%= request.start_date %> to <%= request.end_date %> </p>
+                <p> Wait for <%= request.costume.user.user_name %> to accept your request !</p>
               </div>
             </div>
           <% end %>
-        </div>
 
-      <h2> My confirmed bookings</h2>
-        <div class="cards">
+      <h2 class="mt-4 mb-4"> My confirmed bookings</h2>
           <% @confirmed_bookings.each do |request| %>
-            <div class="card-trip mb-3">
-              <%# INSÉRER IMAGE <img src="#"> %>
-              <div class="card-trip-infos">
+           <div class="card-product mb-4">
+              <% if request.costume.images.attached? %>
+              <%= cl_image_tag request.costume.images.first.key, crop: :fill  %>
+              <% end %>
+              <div class="card-product-infos">
                 <h2> <%= request.costume.name %> </h2>
-                <p> <%= request.costume.price * (request.end_date - request.start_date).to_i %> € </p>
-                <p> <%= request.start_date %> - <%= request.end_date %> </p>
-                <p> <%= request.costume.user.user_name %> </p>
-                <p> <%= request.status %> </p>
+                <p> Price : <%= request.costume.price * (request.end_date - request.start_date).to_i %> € </p>
+                <p> From <%= request.start_date %> to <%= request.end_date %> </p>
+                <p> <%= request.costume.user.user_name %> has accepted your request ! </p>
               </div>
             </div>
           <% end %>
@@ -46,43 +45,42 @@
     </div>
     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
 
-      <h2> My client's pending requests</h2>
-      <div class="cards">
+      <h2 class="mt-4 mb-4"> My client's pending requests</h2>
         <% @pending_requests.each do |request| %>
-          <div class="card-trip mb-3">
-            <%# INSÉRER IMAGE <img src="#"> %>
-            <div class="card-trip-infos">
-              <h2> <%= request.costume.name %> </h2>
-              <p> <%= request.costume.price * (request.end_date - request.start_date).to_i %> € </p>
-              <p> <%= request.start_date %> - <%= request.end_date %> </p>
-              <p> <%= request.costume.user.user_name %> </p>
-              <p> <%= request.status %> </p>
-              <%= button_to "confirm", accept_path(request)%>
+          <div class="card-product mb-4">
+              <% if request.costume.images.attached? %>
+              <%= cl_image_tag request.costume.images.first.key, crop: :fill  %>
+              <% end %>
+              <div class="card-product-infos">
+                <h2> <%= request.costume.name %> </h2>
+                <p> Price : <%= request.costume.price * (request.end_date - request.start_date).to_i %> € </p>
+                <p> From <%= request.start_date %> to <%= request.end_date %> </p>
+                <div class="d-flex justify-content-between">
+                  <p> <%= request.user.user_name %> is waiting for your answer ! </p>
+                  <%= button_to "confirm", accept_path(request), class:"btn-flat btn-sm"%>
+                </div>
             </div>
           </div>
         <% end %>
-      </div>
 
-      <h2> My client's confirmed requests</h2>
-      <div class="cards">
+      <h2 class="mt-4 mb-4"> My client's confirmed requests</h2>
         <% @confirmed_requests.each do |request| %>
-          <div class="card-trip mb-3">
-            <%# INSÉRER IMAGE <img src="#"> %>
-            <div class="card-trip-infos">
+          <div class="card-product mb-4">
+            <% if request.costume.images.attached? %>
+            <%= cl_image_tag request.costume.images.first.key, crop: :fill  %>
+            <% end %>
+            <div class="card-product-infos">
               <h2> <%= request.costume.name %> </h2>
-              <p> <%= request.costume.price * (request.end_date - request.start_date).to_i %> € </p>
-              <p> <%= request.start_date %> - <%= request.end_date %> </p>
-              <p> <%= request.costume.user.user_name %> </p>
-              <p> <%= request.status %> </p>
+              <p> Price : <%= request.costume.price * (request.end_date - request.start_date).to_i %> € </p>
+              <p> From <%= request.start_date %> to <%= request.end_date %> </p>
+              <p> You already confirmed <%= request.user.user_name %>'s booking !</p>
             </div>
 
           </div>
         <% end %>
-      </div>
 
     </div>
     <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-
     </div>
   </div>
 
