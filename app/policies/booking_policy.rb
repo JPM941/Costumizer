@@ -26,7 +26,11 @@ class BookingPolicy < ApplicationPolicy
     record.user == user
   end
 
-  def booking_status?
+  def accept?
+    true
+  end
+  
+  def close?
     true
   end
 end

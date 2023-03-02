@@ -38,6 +38,7 @@
                 <p> <%= request.start_date %> - <%= request.end_date %> </p>
                 <p> <%= request.costume.user.user_name %> </p>
                 <p> <%= request.status %> </p>
+                <%= button_to "close the booking", close_booking_path(request)%>
               </div>
             </div>
           <% end %>
@@ -57,7 +58,7 @@
               <p> <%= request.start_date %> - <%= request.end_date %> </p>
               <p> <%= request.costume.user.user_name %> </p>
               <p> <%= request.status %> </p>
-              <%= button_to "confirm", accept_path(request)%>
+              <%= button_to "confirm", accept_booking_path(request)%>
             </div>
           </div>
         <% end %>
