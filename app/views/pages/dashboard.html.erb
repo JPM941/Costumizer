@@ -37,6 +37,7 @@
                 <p> Price : <%= request.costume.price * (request.end_date - request.start_date).to_i %> € </p>
                 <p> From <%= request.start_date %> to <%= request.end_date %> </p>
                 <p> <%= request.costume.user.user_name %> has accepted your request ! </p>
+                <%= button_to "close the booking", close_booking_path(request)%>
               </div>
             </div>
           <% end %>
@@ -57,7 +58,7 @@
                 <p> From <%= request.start_date %> to <%= request.end_date %> </p>
                 <div class="d-flex justify-content-between">
                   <p> <%= request.user.user_name %> is waiting for your answer ! </p>
-                  <%= button_to "confirm", accept_path(request), class:"btn-flat btn-sm"%>
+                   <%= button_to "confirm", accept_booking_path(request) class:"btn-flat btn-sm"%>
                 </div>
             </div>
           </div>
