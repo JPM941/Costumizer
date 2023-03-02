@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :costumes
   has_many :bookings
+  has_many :requests, through: :costumes, source: :bookings
   has_one_attached :avatar
 
   validates :user_name, presence: true, uniqueness: true, length: { minimum: 2 }
