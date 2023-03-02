@@ -1,9 +1,20 @@
 class CostumesController < ApplicationController
   before_action :set_costume, only: %i[show destroy edit update]
   skip_before_action :authenticate_user!, only: %i[index show]
+
   def index
     @costumes = policy_scope(Costume)
     authorize @costumes
+
+    if params[:query]
+      @costumes = Costume.search_by_name_and_description("#{params[:query]}")
+    else
+      @costumes = Costume.all
+    end
+
+    @costumes = Costume.all if @costumes.empty?
+
+
   end
 
   def show
@@ -16,7 +27,6 @@ class CostumesController < ApplicationController
         lng: @costume.geocode[1]
       }
     ]
-    # raise
   end
 
   def new
@@ -65,6 +75,6 @@ class CostumesController < ApplicationController
   end
 
   def costume_params
-    params.require(:costume).permit(:name, :price, :description, :address, images: [])
+    params.require(:costume).permit(:name, :price, :description, :address, images: [], query:)
   end
 end
