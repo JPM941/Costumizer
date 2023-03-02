@@ -1,7 +1,6 @@
-<%= simple_form_for [@costume, @booking] do |f|%>
+<%= simple_form_for [@booking] do |f|%>
   <%= f.input :costume_rating %>
   <%= f.input :costume_review %>
   <%= f.input :image, as: :file %>
   <%= f.submit "Submit my review", class: "btn btn-flat" %>
 <% end %>
-
