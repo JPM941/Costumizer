@@ -1,3 +1,4 @@
+<div class="page-content">
 
 <div class="container mt-4">
 
@@ -99,14 +100,14 @@
 
     <p style="text-align: justify"><%= "#{@costume.description}" %></p>
 
-    <% if current_user == @costume.user %>
-      <%= link_to "Edit", edit_costume_path(@costume), class: "btn-flat"%>
-      <%= link_to "Delete",
-          costume_path(@costume),
-          class: "btn-flat",
-          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-        %>
-    <% end %>
+      <% if current_user == @costume.user %>
+        <%= link_to "Edit", edit_costume_path(@costume), class: "btn-classic"%>
+        <%= link_to "Delete",
+            costume_path(@costume),
+            class: "btn-classic",
+            data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+          %>
+      <% end %>
 
     <div class="map-comment-grid">
       <div>
@@ -143,5 +144,7 @@
 
   </div>
 
+
+</div>
 
 </div>
