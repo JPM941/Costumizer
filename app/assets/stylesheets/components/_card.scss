@@ -130,7 +130,22 @@
 
 // VERSION INDEX
 
+
+.wrapper-card-trip-index {
+  position:relative;
+  transition: background-color 0.9s ease;
+  transition: all .5s ease-in-out;
+}
+
+.wrapper-card-trip-index:hover {
+  // background: #1e2c68;
+  // box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  transform: scale(1.06);
+  z-index: 10000;
+}
+
 .card-trip-index {
+  pointer-events: none;
   overflow: hidden;
   // background: #5271FF;
   background: linear-gradient(90deg, #5271ff, transparent) #212f6e;
@@ -138,15 +153,6 @@
   border-radius: 5px;
 }
 
-.card-trip-index:hover {
-  // background: #1e2c68;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  transition: background-color 0.9s ease;
-  background: linear-gradient(90deg, #212f6e, transparent) #5271FF;
-  color: #fff;
-  transition: all .5s ease-in-out;
-  transform: scale(1.1);
-}
 
 .card-trip-index > img {
   height: 400px;
