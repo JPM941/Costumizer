@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import DynamicBookingPriceController from "./dynamic_booking_price_controller"
+application.register("dynamic-booking-price", DynamicBookingPriceController)
+
 import FlatpickrController from "./flatpickr_controller"
 application.register("flatpickr", FlatpickrController)
 
@@ -13,10 +16,8 @@ application.register("hello", HelloController)
 import MapController from "./map_controller"
 application.register("map", MapController)
 
-
 import NavbarController from "./navbar_controller"
 application.register("navbar", NavbarController)
 
 import StarController from "./star_controller"
 application.register("star", StarController)
-

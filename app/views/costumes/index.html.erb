@@ -10,19 +10,39 @@
   <div class="cards">
     <% @costumes.each do |costume| %>
       <% if costume.user != current_user %>
-        <%= link_to costume_path(costume), class:"text-decoration-none" do%>
-          <div class="card-trip-index">
-            <% if costume.images.attached? %>
-              <%= cl_image_tag costume.images.first.key, crop: :fill  %>
+        <div class="wrapper-card-trip-index">
+          <div class="fav-button">
+            <% if current_user %>
+              <% unless Bookmark.where({user: current_user, costume: costume}).any? %>
+                <%= link_to costume_bookmarks_path(costume),data: {turbo_method: :post}, class:"text-decoration-none btn-flat" do %>
+                  <i class="fa-regular fa-heart"></i>
+                <% end %>
+              <% else %>
+                <%= link_to bookmark_path(Bookmark.where({user: current_user, costume: costume}).first),data: {turbo_method: :delete}, class:"text-decoration-none btn-flat" do %>
+                  <i class="fas fa-heart"></i>
+                <% end %>
+              <% end %>
             <% end %>
-            <div class="card-trip-infos-index">
-              <div>
-                <h2> <%= "#{costume.name}" %></h2>
-              </div>
-                <h2 class="card-trip-pricing-index"> <%= "#{costume.price}€" %> </h2>
-            </div>
           </div>
-        <% end %>
+          <%= link_to costume_path(costume), class:"text-decoration-none" do %>
+
+            <div class="card-trip-index">
+
+              <% if costume.images.attached? %>
+                <%= cl_image_tag costume.images.first.key, crop: :fill %>
+              <% end %>
+
+              <div class="card-trip-infos-index">
+                <div>
+                  <h2> <%= "#{costume.name}" %></h2>
+                </div>
+                <h2 class="card-trip-pricing-index"> <%= "#{costume.price}€" %> </h2>
+              </div>
+
+            </div>
+
+          <% end %>
+        </div>
       <% end %>
     <% end %>
   </div>
@@ -39,15 +59,17 @@
     <% @costumes.each do |costume| %>
       <% if costume.user == current_user %>
         <%= link_to costume_path(costume), class:"text-decoration-none" do%>
-          <div class="card-trip-index">
-            <% if costume.images.attached? %>
-              <%= cl_image_tag costume.images.first.key, crop: :fill  %>
-            <% end %>
-            <div class="card-trip-infos-index">
-              <div>
-                <h2> <%= "#{costume.name}" %></h2>
+          <div class="wrapper-card-trip-index">
+            <div class="card-trip-index">
+              <% if costume.images.attached? %>
+                <%= cl_image_tag costume.images.first.key, crop: :fill  %>
+              <% end %>
+              <div class="card-trip-infos-index">
+                <div>
+                  <h2> <%= "#{costume.name}" %></h2>
+                </div>
+                  <h2 class="card-trip-pricing-index"> <%= "#{costume.price}€" %> </h2>
               </div>
-                <h2 class="card-trip-pricing-index"> <%= "#{costume.price}€" %> </h2>
             </div>
           </div>
         <% end %>
