@@ -1,7 +1,8 @@
 
-<div class="container mt-4">
+<div class="container mt-4 p-5">
 
-  <div class="d-flex mb-4">
+  <div class="d-flex mb-4 mt-4 justify-content-between">
+    <%# image %>
     <div>
       <% if @costume.images.attached? %>
         <% @costume.images.each do |image| %>
@@ -10,7 +11,8 @@
       <% end %>
     </div>
 
-    <div class="m-4">
+    <%# info %>
+    <div>
       <h2><%= "#{@costume.name}" %></h2>
       <h3><%= "#{@costume.price}" %>€ / day</h2>
 
@@ -25,7 +27,7 @@
       <% end %>
       <% if current_user != @costume.user %>
         <p>This wonderful costume is offered by <%= "#{@costume.user.user_name}" %> !</p>
-        <%= link_to "Book this costume", new_costume_booking_path(@costume), class: "btn-flat"%>
+       
         <% if current_user %>
           <% unless Bookmark.where({user: current_user, costume: @costume}).any? %>
             <%= link_to costume_bookmarks_path(@costume),data: {turbo_method: :post}, class:"text-decoration-none btn-flat" do %>
@@ -39,9 +41,32 @@
         <% end %>
       <% end %>
     </div>
+
+    <%# calendrier %>
+    <div>
+      <%= simple_form_for [@costume, Booking.new], html: { data: { controller: 'flatpickr', flatpickr_dates_value: @costume.flatpickr_booked_dates_object }  } do |f| %>
+        <%= f.input :start_date,
+                    label: false,
+                    as: :string,
+                    input_html: {
+                      class: 'd-none',
+                      data: {
+                        flatpickr_target: 'startDateInput',
+                      }
+                    } %>
+        <%= f.input :end_date,
+                    label: false,
+                    as: :string,
+                    input_html: {
+                      class: 'd-none',
+                      data: {
+                        flatpickr_target: 'endDateInput'
+                      }
+                    } %>
+        <%= f.submit 'Book now!', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
   </div>
-
-
 
   <p style="text-align: justify"><%= "#{@costume.description}" %></p>
 
