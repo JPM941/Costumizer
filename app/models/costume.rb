@@ -18,4 +18,6 @@ class Costume < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+
+  # include CostumeConcern
 end
