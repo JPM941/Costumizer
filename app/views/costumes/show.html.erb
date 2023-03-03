@@ -17,7 +17,9 @@
       <% unless @costume.bookings.empty? %>
         <% @note ||= 0 %>
         <% @costume.bookings.each do |booking|%>
-          <% @note += booking.review.rating %>
+          <% if booking.review %>
+            <% @note += booking.review.rating %>
+          <% end %>
         <% end %>
         <%= "#{@note / @costume.bookings.length} / 5" %>
       <% end %>
