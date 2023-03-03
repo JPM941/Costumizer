@@ -57,7 +57,7 @@
       <h2 class="mt-4">Reviews</h2>
         <% @costume.bookings.each do |booking| %>
           <div class="review-card">
-            <p class="pt-3">Posted by <%= @costume.user.user_name %> <p>
+            <p class="pt-3">Posted by <%= booking.user.user_name %> <p>
             <% (1..booking.review.rating).to_a.each do |star| %>
               <i class="fa-solid fa-star active"></i>
             <% end %>
