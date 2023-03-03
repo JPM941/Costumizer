@@ -1,4 +1,6 @@
 class Costume < ApplicationRecord
+  include CostumeConcern
+  
   belongs_to :user
   has_many :bookings, dependent: :destroy
 
@@ -18,4 +20,5 @@ class Costume < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+
 end
