@@ -27,7 +27,7 @@
       <% end %>
       <% if current_user != @costume.user %>
         <p>This wonderful costume is offered by <%= "#{@costume.user.user_name}" %> !</p>
-       
+
         <% if current_user %>
           <% unless Bookmark.where({user: current_user, costume: @costume}).any? %>
             <%= link_to costume_bookmarks_path(@costume),data: {turbo_method: :post}, class:"text-decoration-none btn-flat" do %>
@@ -44,7 +44,7 @@
 
     <%# calendrier %>
     <div>
-      <%= simple_form_for [@costume, Booking.new], html: { data: { controller: 'flatpickr', flatpickr_dates_value: @costume.flatpickr_booked_dates_object }  } do |f| %>
+      <%= simple_form_for [@costume, Booking.new], html: { data: { controller: 'flatpickr', flatpickr_dates_value: @costume.flatpickr_booked_dates_object, flatpickr_price_value: @costume.price }  } do |f| %>
         <%= f.input :start_date,
                     label: false,
                     as: :string,
@@ -52,6 +52,8 @@
                       class: 'd-none',
                       data: {
                         flatpickr_target: 'startDateInput',
+                        dynamic_booking_price_target: 'startDateInput',
+                        action: 'change->flatpickr#updatePrice'
                       }
                     } %>
         <%= f.input :end_date,
@@ -60,10 +62,16 @@
                     input_html: {
                       class: 'd-none',
                       data: {
-                        flatpickr_target: 'endDateInput'
+                        flatpickr_target: 'endDateInput',
+                        dynamic_booking_price_target: 'endDateInput',
+                        action: 'change->flatpickr#updatePrice'
                       }
                     } %>
         <%= f.submit 'Book now!', class: 'btn btn-primary' %>
+        <p>
+<!-- target the HTML tag that will display the dynamic price -->
+Total price: <span data-flatpickr-target="priceHolder"><%= @costume.price%></span> €
+</p>
       <% end %>
     </div>
   </div>
