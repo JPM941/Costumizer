@@ -1,58 +1,56 @@
 
 <div class="container mt-4">
-
-  <div class="d-flex mb-4">
-    <div>
-      <% if @costume.images.attached? %>
-        <% @costume.images.each do |image| %>
-          <%= cl_image_tag image.key, height: 400, width: 400, crop: :fill %>
-        <% end %>
-      <% end %>
-    </div>
-
-    <div class="m-4">
-      <h2><%= "#{@costume.name}" %></h2>
-      <h3><%= "#{@costume.price}" %>€ / day</h2>
-
-      <% unless @costume.bookings.empty? %>
-        <% @note ||= 0 %>
-        <% @costume.bookings.each do |booking|%>
-          <%if booking.review%>
-          <% @note += booking.review.rating %>
-          <%end%>
-        <% end %>
-        <%= "#{@note / @costume.bookings.length} / 5" %>
-      <% end %>
-      <% if current_user != @costume.user %>
-        <p>This wonderful costume is offered by <%= "#{@costume.user.user_name}" %> !</p>
-        <%= link_to "Book this costume", new_costume_booking_path(@costume), class: "btn-flat"%>
-        <% if current_user %>
-          <% unless Bookmark.where({user: current_user, costume: @costume}).any? %>
-            <%= link_to costume_bookmarks_path(@costume),data: {turbo_method: :post}, class:"text-decoration-none btn-flat" do %>
-              <i class="fas fa-heart"></i> Add to favorite
-            <% end %>
-        <% else %>
-          <%= link_to bookmark_path(Bookmark.where({user: current_user, costume: @costume}).first),data: {turbo_method: :delete}, class:"text-decoration-none btn-flat" do %>
-            <i class="fas fa-heart"></i> Remove from favorite
+  <div class="page-content">
+    <div class="d-flex mb-4">
+      <div>
+        <% if @costume.images.attached? %>
+          <% @costume.images.each do |image| %>
+            <%= cl_image_tag image.key, height: 400, width: 400, crop: :fill %>
           <% end %>
         <% end %>
+      </div>
+
+      <div class="m-4">
+        <h2><%= "#{@costume.name}" %></h2>
+        <h3><%= "#{@costume.price}" %>€ / day</h2>
+
+        <% unless @costume.bookings.empty? %>
+          <% @note ||= 0 %>
+          <% @costume.bookings.each do |booking|%>
+            <%if booking.review%>
+              <% @note += booking.review.rating %>
+            <%end%>
+          <% end %>
+          <%= "#{@note / @costume.bookings.length} / 5" %>
         <% end %>
-      <% end %>
+        <% if current_user != @costume.user %>
+          <p>This wonderful costume is offered by <%= "#{@costume.user.user_name}" %> !</p>
+          <%= link_to "Book this costume", new_costume_booking_path(@costume), class: "btn-flat"%>
+          <% if current_user %>
+            <% unless Bookmark.where({user: current_user, costume: @costume}).any? %>
+              <%= link_to costume_bookmarks_path(@costume),data: {turbo_method: :post}, class:"text-decoration-none btn-flat" do %>
+                <i class="fas fa-heart"></i> Add to favorite
+              <% end %>
+          <% else %>
+            <%= link_to bookmark_path(Bookmark.where({user: current_user, costume: @costume}).first),data: {turbo_method: :delete}, class:"text-decoration-none btn-flat" do %>
+              <i class="fas fa-heart"></i> Remove from favorite
+            <% end %>
+          <% end %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
-  </div>
 
+    <p style="text-align: justify"><%= "#{@costume.description}" %></p>
 
-
-  <p style="text-align: justify"><%= "#{@costume.description}" %></p>
-
-    <% if current_user == @costume.user %>
-      <%= link_to "Edit", edit_costume_path(@costume), class: "btn-flat"%>
-      <%= link_to "Delete",
-          costume_path(@costume),
-          class: "btn-flat",
-          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-        %>
-    <% end %>
+      <% if current_user == @costume.user %>
+        <%= link_to "Edit", edit_costume_path(@costume), class: "btn-flat"%>
+        <%= link_to "Delete",
+            costume_path(@costume),
+            class: "btn-flat",
+            data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+          %>
+      <% end %>
 
   <div class="map-comment-grid">
     <div>
@@ -71,12 +69,13 @@
       </ul>
     </div>
 
-    <div>
-      <h2 class="mt-4">Costume's location</h2>
-      <div style="width: 100%; height: 300px;"
-        data-controller="map"
-        data-map-markers-value="<%= @markers.to_json %>"
-        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      <div>
+        <h2 class="mt-4">Costume's location</h2>
+        <div style="width: 100%; height: 300px;"
+          data-controller="map"
+          data-map-markers-value="<%= @markers.to_json %>"
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
       </div>
     </div>
   </div>
