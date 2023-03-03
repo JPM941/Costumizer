@@ -127,7 +127,6 @@ pinata.save!
 
 puts "seeded #{Costume.count} costumes"
 
-
 puts "seeding bookings..."
 
 Booking.create!(
@@ -148,7 +147,7 @@ Booking.create!(
 
 Booking.create!(
   user: dulcie,
-  costume: poisson,
+  costume: pinata,
   start_date: Date.new(2023,3,11),
   end_date: Date.new(2023,3,14),
   status: "pending"
@@ -164,7 +163,7 @@ Booking.create!(
 
 Booking.create!(
   user: julien,
-  costume: veste,
+  costume: octopus,
   start_date: Date.new(2023,3,16),
   end_date: Date.new(2023,3,18),
   status: "pending"
@@ -172,14 +171,5 @@ Booking.create!(
 puts "seeded #{Booking.count} bookings"
 
 
-puts "seeding reviews..."
-  Booking.all.each do |booking|
-    Review.create!(
-      rating: (1..5).to_a.sample,
-      booking: booking,
-      content: "review's content to seed"
-    )
-  end
-puts "seeded #{Review.count} reviews"
 
 puts "seed done"
