@@ -67,11 +67,16 @@
                         action: 'change->flatpickr#updatePrice'
                       }
                     } %>
-        <%= f.submit 'Book now!', class: 'btn btn-primary' %>
-        <p>
-<!-- target the HTML tag that will display the dynamic price -->
-Total price: <span data-flatpickr-target="priceHolder"><%= @costume.price%></span> €
-</p>
+      <div class="d-flex justify-content-around align-items-center">
+        <div>
+          <%= f.submit 'Book now!', class: 'btn btn-primary' %>
+        </div>
+        <div>
+          Total price: <span data-flatpickr-target="priceHolder"><%= @costume.price%></span> €
+        </div>
+      </div>
+
+
       <% end %>
     </div>
   </div>

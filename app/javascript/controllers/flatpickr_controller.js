@@ -18,7 +18,7 @@ export default class extends Controller {
   #options() {
     return {
       ...this.#parsedBookedDates(),
-      enableTime: true,
+      // enableTime: true,
       minDate: new Date(),
       inline: true,
       mindate: "today",
