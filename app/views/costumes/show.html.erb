@@ -25,14 +25,14 @@
         <% end %>
         <% if current_user != @costume.user %>
           <p>This wonderful costume is offered by <%= "#{@costume.user.user_name}" %> !</p>
-          <%= link_to "Book this costume", new_costume_booking_path(@costume), class: "btn-flat"%>
+          <%= link_to "Book this costume", new_costume_booking_path(@costume), class: "btn-classic"%>
           <% if current_user %>
             <% unless Bookmark.where({user: current_user, costume: @costume}).any? %>
-              <%= link_to costume_bookmarks_path(@costume),data: {turbo_method: :post}, class:"text-decoration-none btn-flat" do %>
+              <%= link_to costume_bookmarks_path(@costume),data: {turbo_method: :post}, class:"text-decoration-none btn-classic" do %>
                 <i class="fas fa-heart"></i> Add to favorite
               <% end %>
           <% else %>
-            <%= link_to bookmark_path(Bookmark.where({user: current_user, costume: @costume}).first),data: {turbo_method: :delete}, class:"text-decoration-none btn-flat" do %>
+            <%= link_to bookmark_path(Bookmark.where({user: current_user, costume: @costume}).first),data: {turbo_method: :delete}, class:"text-decoration-none btn-classic" do %>
               <i class="fas fa-heart"></i> Remove from favorite
             <% end %>
           <% end %>
@@ -44,10 +44,10 @@
     <p style="text-align: justify"><%= "#{@costume.description}" %></p>
 
       <% if current_user == @costume.user %>
-        <%= link_to "Edit", edit_costume_path(@costume), class: "btn-flat"%>
+        <%= link_to "Edit", edit_costume_path(@costume), class: "btn-classic"%>
         <%= link_to "Delete",
             costume_path(@costume),
-            class: "btn-flat",
+            class: "btn-classic",
             data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
           %>
       <% end %>

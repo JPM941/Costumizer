@@ -28,7 +28,13 @@
   </div>
 
   <% if current_user %>
-  <h3>My Costumes</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-8">
+        <h3 class="rubrik">My Costumes</h3>
+      </div>
+    </div>
+  </div>
     <div class="cards">
     <% @costumes.each do |costume| %>
       <% if costume.user == current_user %>
