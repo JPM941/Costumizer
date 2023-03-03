@@ -27,13 +27,16 @@
 }
 
 .btn-nav {
-  background: #5271ff;
-  color: white;
+  background:#ffffff;
+  color: #5370ff;
   font-weight: 500;
   border-radius: 55px;
-  padding: 10px 30px;
-  letter-spacing: 1px;
+  padding: 10px;
   transition: 0.4s;
+  text-decoration: none;
+  margin: 10px;
+  box-shadow: 0 0 15px rgba(150, 149, 149, 0.2);
+
 }
 
 .btn-nav:hover {
@@ -45,8 +48,11 @@
   padding: 10px 30px !important;
 }
 
-.nav-link {
+.btn-classic {
   color:#5271ff;
   font-weight: 500;
   background: white;
+  margin: 10px;
+  border-radius: 50px;
+  
 }
